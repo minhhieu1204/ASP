@@ -24,6 +24,7 @@ namespace DoAnASP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.DbContextion()
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
