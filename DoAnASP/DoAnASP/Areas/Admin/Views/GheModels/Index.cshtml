@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DoAnASP.Areas.Admin.Models.GheModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive table-responsive-data2">
+                        <h1>Ghế</h1>
+
+                        <p>
+                            <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">Create New</a>
+                        </p>
+                        <table class="table table-data2">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Tên ghế
+                                    </th>
+                                    <th>
+                                        Trang thái
+                                    </th>
+                                    <th>
+                                        Loại ghế
+                                    </th>
+                                    <th>
+                                        Phòng
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="tr-shadow">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TenGhe)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TrangThai)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.loaiGhe.TenLoaiGhe)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.phong.TenPhong)
+                                        </td>
+                                        <td>
+                                            <div class="table-data-feature">
+                                                <button asp-action="Edit" asp-route-id="@item.IdGhe" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </button>
+                                                <button asp-action="Delete" asp-route-id="@item.IdGhe" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
