@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnASP.Migrations
 {
     [DbContext(typeof(DPContext))]
-    [Migration("20201130073004_Init")]
-    partial class Init
+    [Migration("20201201055745_phim")]
+    partial class phim
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
