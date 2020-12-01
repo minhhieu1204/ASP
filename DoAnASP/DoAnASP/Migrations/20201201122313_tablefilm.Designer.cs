@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnASP.Migrations
 {
     [DbContext(typeof(DPContext))]
-    [Migration("20201201055745_phim")]
-    partial class phim
+    [Migration("20201201122313_tablefilm")]
+    partial class tablefilm
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -215,8 +215,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("TenLoaiPhim")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("IdLoaiPhim");
 
@@ -231,7 +231,6 @@ namespace DoAnASP.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("HinhAnh")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 

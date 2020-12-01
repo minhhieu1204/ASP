@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -58,11 +60,20 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,MaLoaiPhim")] PhimModel phimModel)
+        public async Task<IActionResult> Create([Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,MaLoaiPhim")] PhimModel phimModel,IFormFile ful)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(phimModel);
+                 _context.Add(phimModel);
+                await _context.SaveChangesAsync();
+                var parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", phimModel.IdPhim + "." +
+            ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1]);
+                using (var stream = new FileStream(parth, FileMode.Create))
+                {
+                    await ful.CopyToAsync(stream);
+                }
+                phimModel.HinhAnh = phimModel.IdPhim + "." + ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1];
+                _context.Update(phimModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -148,7 +159,11 @@ namespace DoAnASP.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var phimModel = await _context.phimModels.FindAsync(id);
+            var parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", phimModel.HinhAnh);
+            FileInfo file = new FileInfo(parth);
+            file.Delete();
             _context.phimModels.Remove(phimModel);
+           
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

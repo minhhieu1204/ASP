@@ -596,11 +596,6 @@ E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\LoaiPhimModels\Details.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\LoaiPhimModels\Edit.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\LoaiPhimModels\Index.cshtml.g.cs
-E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Create.cshtml.g.cs
-E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Delete.cshtml.g.cs
-E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Details.cshtml.g.cs
-E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Edit.cshtml.g.cs
-E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Index.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongModels\Create.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongModels\Delete.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongModels\Details.cshtml.g.cs
@@ -645,3 +640,8 @@ E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Share
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout2.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Single\Index.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Video\Index.cshtml.g.cs
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Create.cshtml.g.cs
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Delete.cshtml.g.cs
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Details.cshtml.g.cs
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Edit.cshtml.g.cs
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Index.cshtml.g.cs

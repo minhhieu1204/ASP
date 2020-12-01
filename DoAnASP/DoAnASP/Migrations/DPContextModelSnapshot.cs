@@ -213,8 +213,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("TenLoaiPhim")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("IdLoaiPhim");
 
@@ -229,7 +229,6 @@ namespace DoAnASP.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("HinhAnh")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 

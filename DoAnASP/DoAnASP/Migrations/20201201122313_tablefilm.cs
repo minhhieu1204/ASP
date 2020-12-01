@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoAnASP.Migrations
 {
-    public partial class phim : Migration
+    public partial class tablefilm : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,7 +40,7 @@ namespace DoAnASP.Migrations
                 {
                     IdLoaiPhim = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenLoaiPhim = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false)
+                    TenLoaiPhim = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,7 +88,7 @@ namespace DoAnASP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenPhim = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ThoiLuong = table.Column<TimeSpan>(type: "time", nullable: false),
-                    HinhAnh = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    HinhAnh = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     MaLoaiPhim = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
