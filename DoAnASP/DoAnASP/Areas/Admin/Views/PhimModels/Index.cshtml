@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <div class="main-content">
     <h1>Index</h1>
@@ -19,10 +20,13 @@
                     @Html.DisplayNameFor(model => model.ThoiLuong)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.HinhAnh)
+                   @Html.DisplayNameFor(model => model.HinhAnh)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.loaiPhim)
+                    @Html.DisplayNameFor(model => model.Mota)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.loaiPhim)" 
                 </th>
                 <th></th>
             </tr>
@@ -38,7 +42,10 @@
                         @Html.DisplayFor(modelItem => item.ThoiLuong)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.HinhAnh)
+                        <img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" style="width:100px; height:100px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mota)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.loaiPhim.TenLoaiPhim)
@@ -52,4 +59,4 @@
             }
         </tbody>
     </table>
-</div>
+    </div>
