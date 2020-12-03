@@ -429,7 +429,6 @@ C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP
 C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.TagHelpers.output.cache
 C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.RazorCoreGenerate.cache
 C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -645,3 +644,14 @@ E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Details.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Edit.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhimModels\Index.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\a404\Index.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\_ViewStart.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Reviews\Index.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_FooterPartial.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_HeaderPartial.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_HeaderPartial2.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_HeadPartial.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout2.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Single\Index.cshtml.g.cs
+C:\Users\PC\Documents\GitHub\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Video\Index.cshtml.g.cs
