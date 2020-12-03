@@ -6,15 +6,28 @@
 
 
 <div class="main-content">
+
     <div class="section__content section__content--p30">
+
         <div class="container-fluid">
+
             <div class="row">
+                <div class="form-header">
+                    <input class="au-input au-input--xl" type="text" name="keyword" id="keyword" placeholder="Search for datas &amp; reports..." />
+                    <button class="au-btn--submit" id="btn_search">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                </div>
                 <div class="col-md-12">
                     <div class="table-responsive table-responsive-data2">
                         <h1>Phim</h1>
 
                         <p>
                             <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">Create New</a>
+                        </p>
+                        <br /><br />
+                        <p>
+                            <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Index" asp-controller="PhimModels">Back</a>
                         </p>
                         <table class="table table-data2">
                             <thead>
@@ -62,3 +75,54 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btn_search").click(function () {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/SearchAPI/search",
+                    data: { 'keyword': $("#keyword").val() }
+                }).done(function (data) {
+                    var cc = JSON.parse(data);
+                    console.log(cc);
+                    $.each(cc, function (index, value) {
+                        var i = ` <tr class="tr-shadow">
+                                        <td>`+
+                            value.TenPhim
+                            +
+                            `
+                                        </td>
+                                        <td>`+
+                            value.ThoiLuong
+                            + `
+                                        </td>
+                                        <td>`+
+                            value.HinhAnh
+                            + `
+                                        </td>
+                                        <td>
+                                          `+
+                            value.TenLoaiPhim
+                            + `
+                                        </td>
+                                        <td>
+                                            <div class="table-data-feature">
+                                                <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </button>
+                                                <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>`;
+                        $('tbody').html(i)
+
+                    });
+            });
+            });
+        });
+    </script>
+
+}
