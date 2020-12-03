@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoAnASP.Migrations
 {
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201202030201_Initial.cs
     public partial class Initial : Migration
-=======
-    public partial class data_cinema : Migration
->>>>>>> Chinh:DoAnASP/DoAnASP/Migrations/20201203045802_data_cinema.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

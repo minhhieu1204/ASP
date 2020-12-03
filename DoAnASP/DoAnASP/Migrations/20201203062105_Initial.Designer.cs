@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnASP.Migrations
 {
     [DbContext(typeof(DPContext))]
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201202030201_Initial.Designer.cs
-    [Migration("20201202030201_Initial")]
+    [Migration("20201203062105_Initial")]
     partial class Initial
-=======
-    [Migration("20201203045802_data_cinema")]
-    partial class data_cinema
->>>>>>> Chinh:DoAnASP/DoAnASP/Migrations/20201203045802_data_cinema.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

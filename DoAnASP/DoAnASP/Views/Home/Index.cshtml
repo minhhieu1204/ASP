@@ -21,16 +21,16 @@
     <ul id="flexiselDemo1">
         @{
             int i = 0;
-            foreach (var item in Model)
+            @foreach (var item in Model)
             {
 
 
             @if (i <= 6)
             {
-            <li><img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" alt="" style="width:200px; height:300px;"/></li>
+            <li><img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" alt="" style="width:221px; height:124px;"/></li>
             }
-            i++;
-             }
+                    i++;
+                }
             }
         </ul>
    
@@ -92,32 +92,41 @@
 </div>
 <div class="more-reviews">
     <ul id="flexiselDemo2">
-        <li><img src="~/template//images/m1.jpg" alt="" /></li>
-        <li><img src="~/template//images/m2.jpg" alt="" /></li>
-        <li><img src="~/template//images/m3.jpg" alt="" /></li>
-        <li><img src="~/template//images/m4.jpg" alt="" /></li>
+        @{
+            int a = 0;
+            @foreach (var item in Model)
+            {
+
+
+                @if (a <= 6)
+                {
+                    <li><img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" alt="" style="width:331,5px; height:186px;" /></li>
+                }
+                a++;
+            }
+        }
     </ul>
     <script type="text/javascript">
         $(window).load(function () {
 
             $("#flexiselDemo2").flexisel({
-                visibleItems: 4,
+            visibleItems: 4,
                 animationSpeed: 1000,
                 autoPlay: true,
                 autoPlaySpeed: 3000,
                 pauseOnHover: false,
                 enableResponsiveBreakpoints: true,
                 responsiveBreakpoints: {
-                    portrait: {
-                        changePoint: 480,
+                portrait: {
+                    changePoint: 480,
                         visibleItems: 2
                     },
                     landscape: {
-                        changePoint: 640,
+                    changePoint: 640,
                         visibleItems: 3
                     },
                     tablet: {
-                        changePoint: 768,
+                    changePoint: 768,
                         visibleItems: 3
                     }
                 }
