@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnASP.Migrations
 {
     [DbContext(typeof(DPContext))]
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201201065640_j.Designer.cs
-    [Migration("20201201065640_j")]
-    partial class j
-=======
-    [Migration("20201203062105_Initial")]
-    partial class Initial
->>>>>>> origin/Backup2:DoAnASP/DoAnASP/Migrations/20201203062105_Initial.Designer.cs
+    [Migration("20201203092501_cc")]
+    partial class cc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -220,13 +215,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("TenLoaiPhim")
                         .IsRequired()
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201201065640_j.Designer.cs
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-=======
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
->>>>>>> origin/Backup2:DoAnASP/DoAnASP/Migrations/20201203062105_Initial.Designer.cs
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("IdLoaiPhim");
 
@@ -241,14 +231,8 @@ namespace DoAnASP.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("HinhAnh")
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201201065640_j.Designer.cs
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
-=======
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
->>>>>>> origin/Backup2:DoAnASP/DoAnASP/Migrations/20201203062105_Initial.Designer.cs
 
                     b.Property<int>("MaLoaiPhim")
                         .HasColumnType("int");

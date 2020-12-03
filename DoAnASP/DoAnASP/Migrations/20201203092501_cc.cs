@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoAnASP.Migrations
 {
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201201065640_j.cs
-    public partial class j : Migration
-=======
-    public partial class Initial : Migration
->>>>>>> origin/Backup2:DoAnASP/DoAnASP/Migrations/20201203062105_Initial.cs
+    public partial class cc : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,11 +40,7 @@ namespace DoAnASP.Migrations
                 {
                     IdLoaiPhim = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201201065640_j.cs
-                    TenLoaiPhim = table.Column<string>(maxLength: 25, nullable: false)
-=======
-                    TenLoaiPhim = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
->>>>>>> origin/Backup2:DoAnASP/DoAnASP/Migrations/20201203062105_Initial.cs
+                    TenLoaiPhim = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,18 +86,11 @@ namespace DoAnASP.Migrations
                 {
                     IdPhim = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201201065640_j.cs
                     TenPhim = table.Column<string>(maxLength: 100, nullable: false),
                     ThoiLuong = table.Column<TimeSpan>(nullable: false),
-                    HinhAnh = table.Column<string>(maxLength: 255, nullable: false),
+                    HinhAnh = table.Column<string>(maxLength: 255, nullable: true),
+                    Mota = table.Column<string>(nullable: true),
                     MaLoaiPhim = table.Column<int>(nullable: false)
-=======
-                    TenPhim = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ThoiLuong = table.Column<TimeSpan>(type: "time", nullable: false),
-                    HinhAnh = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Mota = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MaLoaiPhim = table.Column<int>(type: "int", nullable: false)
->>>>>>> origin/Backup2:DoAnASP/DoAnASP/Migrations/20201203062105_Initial.cs
                 },
                 constraints: table =>
                 {

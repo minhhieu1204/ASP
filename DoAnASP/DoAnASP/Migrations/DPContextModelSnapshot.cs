@@ -213,13 +213,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("TenLoaiPhim")
                         .IsRequired()
-<<<<<<< HEAD
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-=======
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
->>>>>>> origin/Backup2
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("IdLoaiPhim");
 
@@ -234,14 +229,8 @@ namespace DoAnASP.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("HinhAnh")
-<<<<<<< HEAD
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
-=======
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
->>>>>>> origin/Backup2
 
                     b.Property<int>("MaLoaiPhim")
                         .HasColumnType("int");
