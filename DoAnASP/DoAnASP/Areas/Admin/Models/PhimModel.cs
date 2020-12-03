@@ -19,9 +19,11 @@ namespace DoAnASP.Areas.Admin.Models
         [Required]
         public TimeSpan ThoiLuong { get; set; }
 
-        [Required(ErrorMessage = "Chọn hình ảnh")]
+        
         [StringLength(255)]
+        
         public string HinhAnh { get; set; }
+        public string Mota { get; set; }
 
         public int MaLoaiPhim { get; set; }
 

@@ -10,8 +10,8 @@ namespace DoAnASP.Areas.Admin.Models
     {
         [Key]
         public int IdLoaiPhim { get; set; }
-        [StringLength(maximumLength: 25, MinimumLength = 10, ErrorMessage = "Value from 10 to 25 character!")]
-        [Required(ErrorMessage = "Please enter Name Film! ")]
+        [StringLength(maximumLength: 50, MinimumLength = 5, ErrorMessage = "Value from 5 to 50 character!")]
+        [Required(ErrorMessage = "Please enter Name Type Film! ")]
         public string TenLoaiPhim { get; set; }
 
         public ICollection<PhimModel> lstPhim { get; set; }

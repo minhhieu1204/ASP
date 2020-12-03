@@ -7,7 +7,10 @@
 <body class="animsition">
     @await Html.PartialAsync("_MenuPartial.cshtml")
     @await Html.PartialAsync("_HeaderPartial.cshtml")
-    @RenderBody()
+    <div class="container">
+        @RenderBody()
+    </div>
+   
     @await Html.PartialAsync("_FooterPartial.cshtml")
     @RenderSection("Scripts", required: false)
 </body>

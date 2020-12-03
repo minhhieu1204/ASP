@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -49,7 +51,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Create
         public IActionResult Create()
         {
-            ViewData["MaLoaiPhim"] = new SelectList(_context.loaiPhimModels, "IdLoaiPhim", "TenLoaiPhim");
+            ViewBag.TypeFilm = _context.loaiPhimModels.ToList();
             return View();
         }
 
@@ -58,15 +60,26 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,MaLoaiPhim")] PhimModel phimModel)
+        public async Task<IActionResult> Create([Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,Mota,MaLoaiPhim")] PhimModel phimModel,IFormFile ful)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(phimModel);
                 await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
+                var parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", phimModel.IdPhim + "." +
+             ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1]);
+                using (var stream = new FileStream(parth, FileMode.Create))
+                {
+                    await ful.CopyToAsync(stream);
+                }
+                phimModel.HinhAnh = phimModel.IdPhim + "." + ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1];
+                _context.Update(phimModel);
+                _context.Update(phimModel);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaLoaiPhim"] = new SelectList(_context.loaiPhimModels, "IdLoaiPhim", "TenLoaiPhim", phimModel.MaLoaiPhim);
+            ViewBag.TypeFilm = _context.loaiPhimModels.ToList();
             return View(phimModel);
         }
 
@@ -92,7 +105,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,MaLoaiPhim")] PhimModel phimModel)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,Mota,MaLoaiPhim")] PhimModel phimModel)
         {
             if (id != phimModel.IdPhim)
             {
@@ -148,6 +161,9 @@ namespace DoAnASP.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var phimModel = await _context.phimModels.FindAsync(id);
+            var parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", phimModel.HinhAnh);
+            FileInfo file = new FileInfo(parth);
+            file.Delete();
             _context.phimModels.Remove(phimModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
