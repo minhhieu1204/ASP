@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
 <div class="main-content">
     <h1>Create</h1>
 
@@ -25,12 +25,17 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="HinhAnh" class="control-label"></label>
-                    <input type="file" name="ful" asp-for="HinhAnh" class="form-control" />
+                    <input type="file" asp-for="HinhAnh" name="ful" class="form-control" />
                     <span asp-validation-for="HinhAnh" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Mota" class="control-label"></label>
+                    <input asp-for="Mota" class="form-control" />
+                    <span asp-validation-for="Mota" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="MaLoaiPhim" class="control-label"></label>
-                    <select asp-for="MaLoaiPhim" class="form-control" asp-items="ViewBag.MaLoaiPhim"></select>
+                    <select asp-for="MaLoaiPhim" class="form-control" asp-items="@(new SelectList(ViewBag.TypeFilm,"IdLoaiPhim","TenLoaiPhim"))"></select>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
@@ -42,8 +47,8 @@
     <div>
         <a asp-action="Index">Back to List</a>
     </div>
-</div>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

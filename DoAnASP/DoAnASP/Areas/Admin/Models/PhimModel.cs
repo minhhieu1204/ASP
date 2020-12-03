@@ -23,6 +23,7 @@ namespace DoAnASP.Areas.Admin.Models
         [StringLength(255)]
         
         public string HinhAnh { get; set; }
+        public string Mota { get; set; }
 
         public int MaLoaiPhim { get; set; }
 

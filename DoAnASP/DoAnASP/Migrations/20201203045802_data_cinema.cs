@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoAnASP.Migrations
 {
-    public partial class tablefilm : Migration
+    public partial class data_cinema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -89,6 +89,7 @@ namespace DoAnASP.Migrations
                     TenPhim = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ThoiLuong = table.Column<TimeSpan>(type: "time", nullable: false),
                     HinhAnh = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Mota = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MaLoaiPhim = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

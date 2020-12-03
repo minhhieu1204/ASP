@@ -235,6 +235,9 @@ namespace DoAnASP.Migrations
                     b.Property<int>("MaLoaiPhim")
                         .HasColumnType("int");
 
+                    b.Property<string>("Mota")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TenPhim")
                         .IsRequired()
                         .HasMaxLength(100)

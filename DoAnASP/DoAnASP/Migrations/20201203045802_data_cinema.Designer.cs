@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnASP.Migrations
 {
     [DbContext(typeof(DPContext))]
-    [Migration("20201201122313_tablefilm")]
-    partial class tablefilm
+    [Migration("20201203045802_data_cinema")]
+    partial class data_cinema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -236,6 +236,9 @@ namespace DoAnASP.Migrations
 
                     b.Property<int>("MaLoaiPhim")
                         .HasColumnType("int");
+
+                    b.Property<string>("Mota")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenPhim")
                         .IsRequired()
