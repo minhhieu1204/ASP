@@ -85,9 +85,9 @@
                     data: { 'keyword': $("#keyword").val() }
                 }).done(function (data) {
                     var cc = JSON.parse(data);
-                    console.log(cc);
+                     var i = '';
                     $.each(cc, function (index, value) {
-                        var i = ` <tr class="tr-shadow">
+                         i += ` <tr class="tr-shadow">
                                         <td>`+
                             value.TenPhim
                             +
@@ -117,9 +117,8 @@
                                             </div>
                                         </td>
                                     </tr>`;
-                        $('tbody').html(i)
-
                     });
+                    $('tbody').html(i)
             });
             });
         });
