@@ -15,16 +15,16 @@ namespace DoAnASP.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.ChiTietDatVeModel", b =>
                 {
                     b.Property<int>("IdChiTietDatVe")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<double>("GiaVe")
                         .HasColumnType("float");
@@ -47,20 +47,20 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DiaChi")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
                     b.Property<bool>("GioiTinh")
                         .HasColumnType("bit");
 
                     b.Property<string>("HoTen")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
                     b.Property<int?>("LichChieuModelIdLichChieu")
                         .HasColumnType("int");
@@ -73,8 +73,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
                     b.Property<string>("SDT")
                         .IsRequired()
@@ -82,8 +82,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
                     b.HasKey("IdUser");
 
@@ -97,7 +97,7 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdGhe")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("MaLoaiGhe")
                         .HasColumnType("int");
@@ -107,8 +107,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("TenGhe")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
                     b.Property<bool>("TrangThai")
                         .HasColumnType("bit");
@@ -127,7 +127,7 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdMaGiamGia")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("PhanTram")
                         .HasColumnType("int");
@@ -142,11 +142,11 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdLichChieu")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<double>("GiaVe")
-                        .HasMaxLength(9)
-                        .HasColumnType("float");
+                        .HasColumnType("float")
+                        .HasMaxLength(9);
 
                     b.Property<TimeSpan>("GioBatDau")
                         .HasColumnType("time");
@@ -188,16 +188,16 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdLoaiGhe")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<double>("GiaLoaiGhe")
-                        .HasMaxLength(9)
-                        .HasColumnType("float");
+                        .HasColumnType("float")
+                        .HasMaxLength(9);
 
                     b.Property<string>("TenLoaiGhe")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
                     b.HasKey("IdLoaiGhe");
 
@@ -209,12 +209,12 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdLoaiPhim")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("TenLoaiPhim")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("IdLoaiPhim");
 
@@ -226,11 +226,11 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdPhim")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("HinhAnh")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<int>("MaLoaiPhim")
                         .HasColumnType("int");
@@ -240,8 +240,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("TenPhim")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<TimeSpan>("ThoiLuong")
                         .HasColumnType("time");
@@ -258,15 +258,15 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdPhong")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("MaRap")
                         .HasColumnType("int");
 
                     b.Property<string>("TenPhong")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("IdPhong");
 
@@ -280,15 +280,15 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdQuanHuyen")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("MaThanhPho")
                         .HasColumnType("int");
 
                     b.Property<string>("TenQuanHuyen")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("IdQuanHuyen");
 
@@ -302,20 +302,20 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdRap")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DiaChiRap")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<int>("MaQuanHuyen")
                         .HasColumnType("int");
 
                     b.Property<string>("TenRap")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("IdRap");
 
@@ -329,12 +329,12 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdThanhPho")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("TenThanhPho")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("IdThanhPho");
 
@@ -346,20 +346,20 @@ namespace DoAnASP.Migrations
                     b.Property<int>("IdUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DiaChi")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<bool>("GioiTinh")
                         .HasColumnType("bit");
 
                     b.Property<string>("HoTen")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<bool>("LoaiTaiKhoan")
                         .HasColumnType("bit");
@@ -369,18 +369,18 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("SDT")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("IdUser");
 
@@ -394,8 +394,6 @@ namespace DoAnASP.Migrations
                         .HasForeignKey("MaDatVe")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("datVe");
                 });
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.DatVeModel", b =>
@@ -418,10 +416,6 @@ namespace DoAnASP.Migrations
                         .HasForeignKey("MaPhong")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("loaiGhe");
-
-                    b.Navigation("phong");
                 });
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.LichChieuModel", b =>
@@ -439,12 +433,6 @@ namespace DoAnASP.Migrations
                     b.HasOne("DoAnASP.Areas.Admin.Models.PhongModel", "phong")
                         .WithMany("lstLichChieu")
                         .HasForeignKey("phongIdPhong");
-
-                    b.Navigation("giamGia");
-
-                    b.Navigation("phim");
-
-                    b.Navigation("phong");
                 });
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.PhimModel", b =>
@@ -454,8 +442,6 @@ namespace DoAnASP.Migrations
                         .HasForeignKey("MaLoaiPhim")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("loaiPhim");
                 });
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.PhongModel", b =>
@@ -465,8 +451,6 @@ namespace DoAnASP.Migrations
                         .HasForeignKey("MaRap")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("rap");
                 });
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.QuanHuyenModel", b =>
@@ -476,8 +460,6 @@ namespace DoAnASP.Migrations
                         .HasForeignKey("MaThanhPho")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("thanhPho");
                 });
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.RapModel", b =>
@@ -487,55 +469,6 @@ namespace DoAnASP.Migrations
                         .HasForeignKey("MaQuanHuyen")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("quanHuyen");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.GiamGiaModel", b =>
-                {
-                    b.Navigation("lstLichChieu");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.LichChieuModel", b =>
-                {
-                    b.Navigation("lstDatVe");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.LoaiGheModel", b =>
-                {
-                    b.Navigation("lstGhe");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.LoaiPhimModel", b =>
-                {
-                    b.Navigation("lstPhim");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.PhimModel", b =>
-                {
-                    b.Navigation("lstLichChieu");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.PhongModel", b =>
-                {
-                    b.Navigation("lstGhe");
-
-                    b.Navigation("lstLichChieu");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.QuanHuyenModel", b =>
-                {
-                    b.Navigation("lstRap");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.RapModel", b =>
-                {
-                    b.Navigation("lstPhong");
-                });
-
-            modelBuilder.Entity("DoAnASP.Areas.Admin.Models.ThanhPhoModel", b =>
-                {
-                    b.Navigation("lstQuanHuyen");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,86 +1,40 @@
-﻿<div class="reviews-section">
+﻿@model DoAnASP.Areas.Admin.Models.PhimModel
+
+<div class="reviews-section">
     <h3 class="head">Movie Reviews</h3>
     <div class="col-md-9 reviews-grids">
         <div class="review">
             <div class="movie-pic">
-                <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/r4.jpg" alt="" /></a>
+                <a asp-action="Index" asp-controller="Single"><img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(model => model.HinhAnh)" alt="" /></a>
             </div>
             <div class="review-info">
-                <a class="span" asp-action="Index" asp-controller="Single">Lorem  <i>Movie Review</i></a>
-                <p class="dirctr"><a href="">Reagan Gavin Rasquinha, </a>TNN, Mar 12, 2015, 12.47PM IST</p>
-                <p class="ratingview">Critic's Rating:</p>
-                <div class="rating">
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                </div>
-                <p class="ratingview">
-                    &nbsp;3.5/5
-                </p>
-                <div class="clearfix"></div>
-                <p class="ratingview c-rating">Avg Readers' Rating:</p>
-                <div class="rating c-rating">
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                </div>
-                <p class="ratingview c-rating">
-                    &nbsp; 3.3/5
-                </p>
-                <div class="clearfix"></div>
-                <div class="yrw">
-                    <div class="dropdown-button">
-                        <select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
-                            <option value="0">Your rating</option>
-                            <option value="1">1.Poor</option>
-                            <option value="2">1.5(Below average)</option>
-                            <option value="3">2.Average</option>
-                            <option value="4">2.5(Above average)</option>
-                            <option value="5">3.Watchable</option>
-                            <option value="6">3.5(Good)</option>
-                            <option value="7">4.5(Very good)</option>
-                            <option value="8">5.Outstanding</option>
-                        </select>
-                    </div>
-                    <div class="rtm text-center">
-                        <a href="#">REVIEW THIS MOVIE</a>
-                    </div>
-                    <div class="wt text-center">
-                        <a href="#">WATCH THIS TRAILER</a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <p class="info">CAST:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will Smith, Margot Robbie, Adrian Martinez, Rodrigo Santoro, BD Wong, Robert Taylor</p>
-                <p class="info">DIRECTION: &nbsp;&nbsp;&nbsp;&nbsp;Glenn Ficarra, John Requa</p>
-                <p class="info">GENRE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Crime</p>
-                <p class="info">DURATION:&nbsp;&nbsp;&nbsp; &nbsp; 1 hour 45 minutes</p>
-                
+                <a class="span" > @Html.DisplayFor(model => model.TenPhim)</a>
+              
+                <p class="info">THỂ LOẠI: @Html.DisplayFor(model => model.loaiPhim.TenLoaiPhim)</p>
+                <p class="info">THỜI LƯỢNG: @Html.DisplayFor(model => model.ThoiLuong)</p>
+
                 <div class="row">
                     <div class="col-sm-3">
-                        <select class="custom-select">
+                        <select class="custom-select" id="city"  onchange="myCity()">
                             <option>--Chưa Chọn--</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <select class="custom-select">
+                        <select class="custom-select" id="district"  onchange="myDistrict()">
                             <option>--Chưa Chọn--</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <select class="custom-select">
+                        <select class="custom-select" id="rap">
                             <option>--Chưa Chọn--</option>
                         </select>
                     </div>
                 </div>
-                
+
             </div>
             <div class="clearfix"></div>
         </div> <br />
-        
+
         <div class="best-review">
             <div name="LichChieu" class="container">
                 <table class="table" name="Lich">
@@ -101,20 +55,17 @@
         </div>
         <div class="story-review">
             <p>
-                Hơn 64 triệu ca nCoV toàn cầu, WHO cảnh báo về đại dịch tương lai
-                Toàn cầu ghi nhận hơn 64 triệu ca nhiễm và gần 1,5 triệu người đã chết vì nCoV, WHO cảnh báo về đại dịch khác nếu không rút kinh nghiệm.
-                Thế giới ghi nhận 64.115.631 ca nhiễm và 1.484.796 người đã tử vong do nCoV, tăng lần lượt 577.495 và 11.970 ca trong một ngày, trong khi 44.324.618 người đã bình phục,
-                theo trang cập nhật theo thời gian thực Worldometers.
+                @Html.DisplayFor(model => model.Mota)
             </p>
         </div>
         <!-- comments-section-starts -->
         <div class="comments-section">
-         
+
         </div>
         <!-- comments-section-ends -->
         <div class="reply-section">
-            
-           
+
+
         </div>
     </div>
     <div class="col-md-3 side-bar">
@@ -122,27 +73,27 @@
             <h3>Featured Today in Movie Reviews</h3>
             <ul>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f1.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f1.jpg" alt="" /></a>
                     <p>lorem movie review</p>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f2.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f2.jpg" alt="" /></a>
                     <p>lorem movie review</p>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f3.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f3.jpg" alt="" /></a>
                     <p>lorem movie review</p>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f4.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f4.jpg" alt="" /></a>
                     <p>lorem movie review</p>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f5.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f5.jpg" alt="" /></a>
                     <p>lorem movie review</p>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f6.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f6.jpg" alt="" /></a>
                     <p>lorem movie review</p>
                 </li>
                 <div class="clearfix"></div>
@@ -153,66 +104,66 @@
             <h3>Featured Today in Entertainment</h3>
             <ul>
                 <li class="ent">
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f6.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f6.jpg" alt="" /></a>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
+                    <a asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
 
                 </li>
                 <div class="clearfix"></div>
             </ul>
             <ul>
                 <li class="ent">
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f5.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f5.jpg" alt="" /></a>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
+                    <a asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
 
                 </li>
                 <div class="clearfix"></div>
             </ul>
             <ul>
                 <li class="ent">
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f3.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f3.jpg" alt="" /></a>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
+                    <a asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
 
                 </li>
                 <div class="clearfix"></div>
             </ul>
             <ul>
                 <li class="ent">
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f4.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f4.jpg" alt="" /></a>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
+                    <a asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
 
                 </li>
                 <div class="clearfix"></div>
             </ul>
             <ul>
                 <li class="ent">
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f2.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f2.jpg" alt="" /></a>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
+                    <a asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
 
                 </li>
                 <div class="clearfix"></div>
             </ul>
             <ul>
                 <li class="ent">
-                    <a  asp-action="Index" asp-controller="Single"><img src="~/template/images/f1.jpg" alt="" /></a>
+                    <a asp-action="Index" asp-controller="Single"><img src="~/template/images/f1.jpg" alt="" /></a>
                 </li>
                 <li>
-                    <a  asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
+                    <a asp-action="Index" asp-controller="Single">Watch ‘Bombay Velvet’ trailer during WC match</a>
 
                 </li>
                 <div class="clearfix"></div>
             </ul>
         </div>
-        
+
 
 
     </div>
@@ -230,30 +181,83 @@
         <li><img src="~/template/images/r6.jpg" alt="" /></li>
     </ul>
     <script type="text/javascript">
-		$(window).load(function() {
-		  $("#flexiselDemo1").flexisel({
-				visibleItems: 6,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,
-				pauseOnHover: false,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint:480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint:640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint:768,
-						visibleItems: 3
-					}
-				}
-			});
-			});
+        $(window).load(function () {
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 6,
+                animationSpeed: 1000,
+                autoPlay: true,
+                autoPlaySpeed: 3000,
+                pauseOnHover: false,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 2
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 3
+                    }
+                }
+            });
+        });
+
     </script>
+    @section Scripts{
+        <script>
+            function fetchAll() {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/ThanhPhoModels/root"
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    $.each(dataJS, function (index, value) {
+                        i += `<option value="${value.IdThanhPho}">${value.TenThanhPho}</option>`;
+                    });
+                    console.log(data);
+                    $('#city').html(i);
+                });
+            }
+            fetchAll();
+
+            function myCity() {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/ThanhPhoModels/quanhuyen",
+                    data: { 'id': $('#city').val() }
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    $.each(dataJS, function (index, value) {
+                        i += `<option value="${value.IdQuanHuyen}">${value.TenQuanHuyen}</option>`;
+                    });
+                    console.log(data);
+                    $('#district').html(i);
+                });
+            }
+
+            function myDistrict() {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/ThanhPhoModels/rap",
+                    data: { 'id': $('#district').val() }
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    $.each(dataJS, function (index, value) {
+                        i += `<option value="${value.IdRap}">${value.TenRap}</option>`;
+                    });
+                    console.log(data);
+                    $('#rap').html(i);
+                });
+            }
+        </script>
+
+    }
     <script type="text/javascript" src="~/template/js/jquery.flexisel.js"></script>
 </div>

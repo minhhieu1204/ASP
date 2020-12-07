@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoAnASP.Migrations
 {
-    public partial class data_cinema : Migration
+    public partial class hieiu : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,9 +11,9 @@ namespace DoAnASP.Migrations
                 name: "giamGiaModels",
                 columns: table => new
                 {
-                    IdMaGiamGia = table.Column<int>(type: "int", nullable: false)
+                    IdMaGiamGia = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PhanTram = table.Column<int>(type: "int", nullable: false)
+                    PhanTram = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,10 +24,10 @@ namespace DoAnASP.Migrations
                 name: "loaiGheModels",
                 columns: table => new
                 {
-                    IdLoaiGhe = table.Column<int>(type: "int", nullable: false)
+                    IdLoaiGhe = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenLoaiGhe = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    GiaLoaiGhe = table.Column<double>(type: "float", maxLength: 9, nullable: false)
+                    TenLoaiGhe = table.Column<string>(maxLength: 25, nullable: false),
+                    GiaLoaiGhe = table.Column<double>(maxLength: 9, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,9 +38,9 @@ namespace DoAnASP.Migrations
                 name: "loaiPhimModels",
                 columns: table => new
                 {
-                    IdLoaiPhim = table.Column<int>(type: "int", nullable: false)
+                    IdLoaiPhim = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenLoaiPhim = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    TenLoaiPhim = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,9 +51,9 @@ namespace DoAnASP.Migrations
                 name: "thanhPhoModels",
                 columns: table => new
                 {
-                    IdThanhPho = table.Column<int>(type: "int", nullable: false)
+                    IdThanhPho = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenThanhPho = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    TenThanhPho = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,16 +64,16 @@ namespace DoAnASP.Migrations
                 name: "userModels",
                 columns: table => new
                 {
-                    IdUser = table.Column<int>(type: "int", nullable: false)
+                    IdUser = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    HoTen = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GioiTinh = table.Column<bool>(type: "bit", nullable: false),
-                    DiaChi = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    SDT = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    LoaiTaiKhoan = table.Column<bool>(type: "bit", nullable: false)
+                    Username = table.Column<string>(maxLength: 100, nullable: false),
+                    Password = table.Column<string>(maxLength: 100, nullable: false),
+                    HoTen = table.Column<string>(maxLength: 100, nullable: false),
+                    NgaySinh = table.Column<DateTime>(nullable: false),
+                    GioiTinh = table.Column<bool>(nullable: false),
+                    DiaChi = table.Column<string>(maxLength: 255, nullable: false),
+                    SDT = table.Column<string>(maxLength: 10, nullable: false),
+                    LoaiTaiKhoan = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,13 +84,13 @@ namespace DoAnASP.Migrations
                 name: "phimModels",
                 columns: table => new
                 {
-                    IdPhim = table.Column<int>(type: "int", nullable: false)
+                    IdPhim = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenPhim = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ThoiLuong = table.Column<TimeSpan>(type: "time", nullable: false),
-                    HinhAnh = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Mota = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MaLoaiPhim = table.Column<int>(type: "int", nullable: false)
+                    TenPhim = table.Column<string>(maxLength: 100, nullable: false),
+                    ThoiLuong = table.Column<TimeSpan>(nullable: false),
+                    HinhAnh = table.Column<string>(maxLength: 255, nullable: true),
+                    Mota = table.Column<string>(nullable: true),
+                    MaLoaiPhim = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -107,10 +107,10 @@ namespace DoAnASP.Migrations
                 name: "quanHuyenModels",
                 columns: table => new
                 {
-                    IdQuanHuyen = table.Column<int>(type: "int", nullable: false)
+                    IdQuanHuyen = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenQuanHuyen = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    MaThanhPho = table.Column<int>(type: "int", nullable: false)
+                    TenQuanHuyen = table.Column<string>(maxLength: 100, nullable: false),
+                    MaThanhPho = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,11 +127,11 @@ namespace DoAnASP.Migrations
                 name: "rapModels",
                 columns: table => new
                 {
-                    IdRap = table.Column<int>(type: "int", nullable: false)
+                    IdRap = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenRap = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DiaChiRap = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    MaQuanHuyen = table.Column<int>(type: "int", nullable: false)
+                    TenRap = table.Column<string>(maxLength: 100, nullable: false),
+                    DiaChiRap = table.Column<string>(maxLength: 255, nullable: false),
+                    MaQuanHuyen = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -148,10 +148,10 @@ namespace DoAnASP.Migrations
                 name: "phongModels",
                 columns: table => new
                 {
-                    IdPhong = table.Column<int>(type: "int", nullable: false)
+                    IdPhong = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenPhong = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    MaRap = table.Column<int>(type: "int", nullable: false)
+                    TenPhong = table.Column<string>(maxLength: 100, nullable: false),
+                    MaRap = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -168,12 +168,12 @@ namespace DoAnASP.Migrations
                 name: "gheModels",
                 columns: table => new
                 {
-                    IdGhe = table.Column<int>(type: "int", nullable: false)
+                    IdGhe = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenGhe = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    TrangThai = table.Column<bool>(type: "bit", nullable: false),
-                    MaLoaiGhe = table.Column<int>(type: "int", nullable: false),
-                    MaPhong = table.Column<int>(type: "int", nullable: false)
+                    TenGhe = table.Column<string>(maxLength: 25, nullable: false),
+                    TrangThai = table.Column<bool>(nullable: false),
+                    MaLoaiGhe = table.Column<int>(nullable: false),
+                    MaPhong = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -196,17 +196,17 @@ namespace DoAnASP.Migrations
                 name: "lichChieuModels",
                 columns: table => new
                 {
-                    IdLichChieu = table.Column<int>(type: "int", nullable: false)
+                    IdLichChieu = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NgayChieu = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GioBatDau = table.Column<TimeSpan>(type: "time", nullable: false),
-                    GioKetThuc = table.Column<TimeSpan>(type: "time", nullable: false),
-                    GiaVe = table.Column<double>(type: "float", maxLength: 9, nullable: false),
-                    MaPhong = table.Column<int>(type: "int", nullable: false),
-                    MaPhim = table.Column<int>(type: "int", nullable: false),
-                    MaGiamGia = table.Column<int>(type: "int", nullable: false),
-                    phongIdPhong = table.Column<int>(type: "int", nullable: true),
-                    phimIdPhim = table.Column<int>(type: "int", nullable: true)
+                    NgayChieu = table.Column<DateTime>(nullable: false),
+                    GioBatDau = table.Column<TimeSpan>(nullable: false),
+                    GioKetThuc = table.Column<TimeSpan>(nullable: false),
+                    GiaVe = table.Column<double>(maxLength: 9, nullable: false),
+                    MaPhong = table.Column<int>(nullable: false),
+                    MaPhim = table.Column<int>(nullable: false),
+                    MaGiamGia = table.Column<int>(nullable: false),
+                    phongIdPhong = table.Column<int>(nullable: true),
+                    phimIdPhim = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -235,17 +235,17 @@ namespace DoAnASP.Migrations
                 name: "datVeModels",
                 columns: table => new
                 {
-                    IdUser = table.Column<int>(type: "int", nullable: false)
+                    IdUser = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    HoTen = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GioiTinh = table.Column<bool>(type: "bit", nullable: false),
-                    DiaChi = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    SDT = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LoaiTaiKhoan = table.Column<bool>(type: "bit", nullable: false),
-                    LichChieuModelIdLichChieu = table.Column<int>(type: "int", nullable: true)
+                    Username = table.Column<string>(maxLength: 25, nullable: false),
+                    Password = table.Column<string>(maxLength: 25, nullable: false),
+                    HoTen = table.Column<string>(maxLength: 25, nullable: false),
+                    NgaySinh = table.Column<DateTime>(nullable: false),
+                    GioiTinh = table.Column<bool>(nullable: false),
+                    DiaChi = table.Column<string>(maxLength: 25, nullable: false),
+                    SDT = table.Column<string>(nullable: false),
+                    LoaiTaiKhoan = table.Column<bool>(nullable: false),
+                    LichChieuModelIdLichChieu = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -262,11 +262,11 @@ namespace DoAnASP.Migrations
                 name: "chiTietDatVeModels",
                 columns: table => new
                 {
-                    IdChiTietDatVe = table.Column<int>(type: "int", nullable: false)
+                    IdChiTietDatVe = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SoGhe = table.Column<int>(type: "int", nullable: false),
-                    GiaVe = table.Column<double>(type: "float", nullable: false),
-                    MaDatVe = table.Column<int>(type: "int", nullable: false)
+                    SoGhe = table.Column<int>(nullable: false),
+                    GiaVe = table.Column<double>(nullable: false),
+                    MaDatVe = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
