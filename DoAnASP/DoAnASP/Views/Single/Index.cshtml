@@ -15,17 +15,17 @@
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <select class="custom-select">
+                        <select class="custom-select" id="city"  onchange="myCity()">
                             <option>--Chưa Chọn--</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <select class="custom-select">
+                        <select class="custom-select" id="district"  onchange="myDistrict()">
                             <option>--Chưa Chọn--</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <select class="custom-select">
+                        <select class="custom-select" id="rap">
                             <option>--Chưa Chọn--</option>
                         </select>
                     </div>
@@ -205,6 +205,59 @@
                 }
             });
         });
+
     </script>
+    @section Scripts{
+        <script>
+            function fetchAll() {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/ThanhPhoModels/root"
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    $.each(dataJS, function (index, value) {
+                        i += `<option value="${value.IdThanhPho}">${value.TenThanhPho}</option>`;
+                    });
+                    console.log(data);
+                    $('#city').html(i);
+                });
+            }
+            fetchAll();
+
+            function myCity() {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/ThanhPhoModels/quanhuyen",
+                    data: { 'id': $('#city').val() }
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    $.each(dataJS, function (index, value) {
+                        i += `<option value="${value.IdQuanHuyen}">${value.TenQuanHuyen}</option>`;
+                    });
+                    console.log(data);
+                    $('#district').html(i);
+                });
+            }
+
+            function myDistrict() {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/ThanhPhoModels/rap",
+                    data: { 'id': $('#district').val() }
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    $.each(dataJS, function (index, value) {
+                        i += `<option value="${value.IdRap}">${value.TenRap}</option>`;
+                    });
+                    console.log(data);
+                    $('#rap').html(i);
+                });
+            }
+        </script>
+
+    }
     <script type="text/javascript" src="~/template/js/jquery.flexisel.js"></script>
 </div>
