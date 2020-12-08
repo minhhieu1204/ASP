@@ -21,10 +21,11 @@ namespace DoAnASP.Areas.Admin.Controllers
         }
 
         // GET: Admin/LichChieuModels
-        public async Task<IActionResult> Index()
+            public async Task<IActionResult> Index()
         {
-            var dPContext = _context.lichChieuModels.Include(l => l.giamGia);
-            return View(await dPContext.ToListAsync());
+            var dPContext = _context.lichChieuModels.Include(s => s.giamGia);
+            var dpcontext = dPContext.Include(l => l.phong).Include(k=>k.phim);
+            return View(await dpcontext.ToListAsync());
         }
 
         // GET: Admin/LichChieuModels/Details/5
@@ -49,6 +50,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/LichChieuModels/Create
         public IActionResult Create()
         {
+            ViewData["MaPhong"] = new SelectList(_context.phongModels, "IdPhong", "TenPhong");
+            ViewData["MaPhim"] = new SelectList(_context.phimModels, "IdPhim", "TenPhim");
             ViewData["MaGiamGia"] = new SelectList(_context.giamGiaModels, "IdMaGiamGia", "IdMaGiamGia");
             return View();
         }

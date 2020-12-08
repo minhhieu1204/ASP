@@ -15,7 +15,7 @@
     <a class="video" href="#"><i class="video1"></i>WATCH TRAILER</a>
     <a class="book" href="#"><i class="book1"></i>BOOK TICKET</a>
 </div>
-        </div>
+       </div>
 <div class="review-slider">
     
     <ul id="flexiselDemo1">
@@ -27,7 +27,7 @@
 
             @if (i <= 6)
             {
-            <li><a asp-controller="Single" asp-action="Index" asp-route-id="@item.IdPhim">content<img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" alt="" style="width:221px; height:124px;" /> </a></li>
+            <li><a asp-controller="Single" asp-action="Index" asp-route-id="@item.IdPhim">content<img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" title="@Html.DisplayFor(modelItem => item.TenPhim)" style="width:221px; height:124px;" /> </a></li>
             }
                     i++;
                 }

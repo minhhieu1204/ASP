@@ -1030,3 +1030,14 @@ F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_HeadPa
 F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout2.cshtml.g.cs
 F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Single\Index.cshtml.g.cs
 F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Video\Index.cshtml.g.cs
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
