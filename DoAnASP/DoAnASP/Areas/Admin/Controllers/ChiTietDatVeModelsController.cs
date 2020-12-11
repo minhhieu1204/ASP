@@ -49,7 +49,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/ChiTietDatVeModels/Create
         public IActionResult Create()
         {
-            ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdUser", "DiaChi");
+            ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdDatVe", "IdDatVe");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace DoAnASP.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdUser", "DiaChi", chiTietDatVeModel.MaDatVe);
+            ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdDatVe", "IdDatVe", chiTietDatVeModel.MaDatVe);
             return View(chiTietDatVeModel);
         }
 
@@ -83,7 +83,7 @@ namespace DoAnASP.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdUser", "DiaChi", chiTietDatVeModel.MaDatVe);
+            ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdDatVe", "IdDatVe", chiTietDatVeModel.MaDatVe);
             return View(chiTietDatVeModel);
         }
 
@@ -119,7 +119,7 @@ namespace DoAnASP.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdUser", "DiaChi", chiTietDatVeModel.MaDatVe);
+            ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdDatVe", "IdDatVe", chiTietDatVeModel.MaDatVe);
             return View(chiTietDatVeModel);
         }
 
