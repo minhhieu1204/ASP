@@ -1041,3 +1041,4 @@ E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win-x64\
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\scopedcss\bundle\DoAnASP.styles.css

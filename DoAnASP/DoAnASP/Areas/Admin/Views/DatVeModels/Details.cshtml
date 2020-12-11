@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Details</h1>
@@ -11,56 +12,44 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
+            @Html.DisplayNameFor(model => model.SoGhe)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
+            @Html.DisplayFor(model => model.SoGhe)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.NgayDat)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
+            @Html.DisplayFor(model => model.NgayDat)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HoTen)
+            @Html.DisplayNameFor(model => model.TongGia)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HoTen)
+            @Html.DisplayFor(model => model.TongGia)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NgaySinh)
+            @Html.DisplayNameFor(model => model.TrangThaiThanhToan)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NgaySinh)
+            @Html.DisplayFor(model => model.TrangThaiThanhToan)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GioiTinh)
+            @Html.DisplayNameFor(model => model.lichChieu)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GioiTinh)
+            @Html.DisplayFor(model => model.lichChieu.IdLichChieu)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DiaChi)
+            @Html.DisplayNameFor(model => model.khachHang)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LoaiTaiKhoan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LoaiTaiKhoan)
+            @Html.DisplayFor(model => model.khachHang.DiaChi)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdUser">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.IdDatVe">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

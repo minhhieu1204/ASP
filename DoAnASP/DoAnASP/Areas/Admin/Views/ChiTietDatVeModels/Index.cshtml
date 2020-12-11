@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -34,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.GiaVe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.datVe.DiaChi)
+                @Html.DisplayFor(modelItem => item.datVe.IdDatVe)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdChiTietDatVe">Edit</a> |

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoAnASP.Migrations
 {
-    public partial class hieiu : Migration
+    public partial class i : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,7 @@ namespace DoAnASP.Migrations
                     IdLoaiGhe = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenLoaiGhe = table.Column<string>(maxLength: 25, nullable: false),
-                    GiaLoaiGhe = table.Column<double>(maxLength: 9, nullable: false)
+                    GiaLoaiGhe = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -201,12 +201,10 @@ namespace DoAnASP.Migrations
                     NgayChieu = table.Column<DateTime>(nullable: false),
                     GioBatDau = table.Column<TimeSpan>(nullable: false),
                     GioKetThuc = table.Column<TimeSpan>(nullable: false),
-                    GiaVe = table.Column<double>(maxLength: 9, nullable: false),
+                    GiaVe = table.Column<double>(nullable: false),
                     MaPhong = table.Column<int>(nullable: false),
                     MaPhim = table.Column<int>(nullable: false),
-                    MaGiamGia = table.Column<int>(nullable: false),
-                    phongIdPhong = table.Column<int>(nullable: true),
-                    phimIdPhim = table.Column<int>(nullable: true)
+                    MaGiamGia = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -218,44 +216,47 @@ namespace DoAnASP.Migrations
                         principalColumn: "IdMaGiamGia",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_lichChieuModels_phimModels_phimIdPhim",
-                        column: x => x.phimIdPhim,
+                        name: "FK_lichChieuModels_phimModels_MaPhim",
+                        column: x => x.MaPhim,
                         principalTable: "phimModels",
                         principalColumn: "IdPhim",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_lichChieuModels_phongModels_phongIdPhong",
-                        column: x => x.phongIdPhong,
+                        name: "FK_lichChieuModels_phongModels_MaPhong",
+                        column: x => x.MaPhong,
                         principalTable: "phongModels",
                         principalColumn: "IdPhong",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "datVeModels",
                 columns: table => new
                 {
-                    IdUser = table.Column<int>(nullable: false)
+                    IdDatVe = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(maxLength: 25, nullable: false),
-                    Password = table.Column<string>(maxLength: 25, nullable: false),
-                    HoTen = table.Column<string>(maxLength: 25, nullable: false),
-                    NgaySinh = table.Column<DateTime>(nullable: false),
-                    GioiTinh = table.Column<bool>(nullable: false),
-                    DiaChi = table.Column<string>(maxLength: 25, nullable: false),
-                    SDT = table.Column<string>(nullable: false),
-                    LoaiTaiKhoan = table.Column<bool>(nullable: false),
-                    LichChieuModelIdLichChieu = table.Column<int>(nullable: true)
+                    SoGhe = table.Column<int>(nullable: false),
+                    NgayDat = table.Column<DateTime>(nullable: false),
+                    TongGia = table.Column<double>(nullable: false),
+                    MaLichChieu = table.Column<int>(nullable: false),
+                    TrangThaiThanhToan = table.Column<bool>(nullable: false),
+                    MaKhachHang = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_datVeModels", x => x.IdUser);
+                    table.PrimaryKey("PK_datVeModels", x => x.IdDatVe);
                     table.ForeignKey(
-                        name: "FK_datVeModels_lichChieuModels_LichChieuModelIdLichChieu",
-                        column: x => x.LichChieuModelIdLichChieu,
+                        name: "FK_datVeModels_userModels_MaKhachHang",
+                        column: x => x.MaKhachHang,
+                        principalTable: "userModels",
+                        principalColumn: "IdUser",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_datVeModels_lichChieuModels_MaLichChieu",
+                        column: x => x.MaLichChieu,
                         principalTable: "lichChieuModels",
                         principalColumn: "IdLichChieu",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,7 +276,7 @@ namespace DoAnASP.Migrations
                         name: "FK_chiTietDatVeModels_datVeModels_MaDatVe",
                         column: x => x.MaDatVe,
                         principalTable: "datVeModels",
-                        principalColumn: "IdUser",
+                        principalColumn: "IdDatVe",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -285,9 +286,14 @@ namespace DoAnASP.Migrations
                 column: "MaDatVe");
 
             migrationBuilder.CreateIndex(
-                name: "IX_datVeModels_LichChieuModelIdLichChieu",
+                name: "IX_datVeModels_MaKhachHang",
                 table: "datVeModels",
-                column: "LichChieuModelIdLichChieu");
+                column: "MaKhachHang");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_datVeModels_MaLichChieu",
+                table: "datVeModels",
+                column: "MaLichChieu");
 
             migrationBuilder.CreateIndex(
                 name: "IX_gheModels_MaLoaiGhe",
@@ -305,14 +311,14 @@ namespace DoAnASP.Migrations
                 column: "MaGiamGia");
 
             migrationBuilder.CreateIndex(
-                name: "IX_lichChieuModels_phimIdPhim",
+                name: "IX_lichChieuModels_MaPhim",
                 table: "lichChieuModels",
-                column: "phimIdPhim");
+                column: "MaPhim");
 
             migrationBuilder.CreateIndex(
-                name: "IX_lichChieuModels_phongIdPhong",
+                name: "IX_lichChieuModels_MaPhong",
                 table: "lichChieuModels",
-                column: "phongIdPhong");
+                column: "MaPhong");
 
             migrationBuilder.CreateIndex(
                 name: "IX_phimModels_MaLoaiPhim",
@@ -344,13 +350,13 @@ namespace DoAnASP.Migrations
                 name: "gheModels");
 
             migrationBuilder.DropTable(
-                name: "userModels");
-
-            migrationBuilder.DropTable(
                 name: "datVeModels");
 
             migrationBuilder.DropTable(
                 name: "loaiGheModels");
+
+            migrationBuilder.DropTable(
+                name: "userModels");
 
             migrationBuilder.DropTable(
                 name: "lichChieuModels");
