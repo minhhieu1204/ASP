@@ -1,4 +1,6 @@
-﻿@model IEnumerable<DoAnASP.Areas.Admin.Models.PhimModel>
+﻿
+@model IEnumerable<DoAnASP.Areas.Admin.Models.PhimModel>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -21,14 +23,11 @@
                 <div class="col-md-12">
                     <div class="table-responsive table-responsive-data2">
                         <h1>Phim</h1>
-
+                        <br />
                         <p>
                             <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">Create New</a>
                         </p>
-                        <br /><br />
-                        <p>
-                            <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Index" asp-controller="PhimModels">Back</a>
-                        </p>
+                        <br />
                         <table class="table table-data2">
                             <thead>
                                 <tr>
@@ -50,25 +49,28 @@
                                             @Html.DisplayFor(modelItem => item.ThoiLuong)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.HinhAnh)
+                                            <img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" style="width:100px; height:100px;" />
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.loaiPhim.TenLoaiPhim)
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a asp-action="Edit" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
                                 }
                             </tbody>
+
                         </table>
+                        <br />
+                       
                     </div>
                 </div>
             </div>
@@ -85,41 +87,39 @@
                     data: { 'keyword': $("#keyword").val() }
                 }).done(function (data) {
                     var cc = JSON.parse(data);
-                     var i = '';
+                    var i = '';
                     $.each(cc, function (index, value) {
-                         i += ` <tr class="tr-shadow">
-                                        <td>`+
+                        i += ` <tr class="tr-shadow">
+                                                    <td>`+
                             value.TenPhim
                             +
                             `
-                                        </td>
-                                        <td>`+
+                                                    </td>
+                                                    <td>`+
                             value.ThoiLuong
                             + `
-                                        </td>
-                                        <td>`+
-                            value.HinhAnh
-                            + `
-                                        </td>
-                                        <td>
-                                          `+
+                                                    </td>
+                                                    <td><img src="/ImageAdmin/ImgPhim/`+ value.HinhAnh +`" style="width:100px; height:100px;" />
+                                                    </td>
+                                                    <td>
+                                                      `+
                             value.TenLoaiPhim
                             + `
-                                        </td>
-                                        <td>
-                                            <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <i class="zmdi zmdi-delete"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>`;
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                <i class="zmdi zmdi-edit"></i>
+                                                            </button>
+                                                            <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>`;
                     });
                     $('tbody').html(i)
-            });
+                });
             });
         });
     </script>

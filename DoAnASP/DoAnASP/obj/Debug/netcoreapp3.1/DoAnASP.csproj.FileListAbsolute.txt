@@ -1041,3 +1041,12 @@ E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win-x64\
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\PagedList.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\PagedList.Mvc.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
