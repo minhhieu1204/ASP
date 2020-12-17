@@ -9,7 +9,7 @@
             </div>
             <div class="review-info">
                 <a class="span" > @Html.DisplayFor(model => model.TenPhim)</a>
-              
+                <input id="idphim" type="hidden" value="@Html.DisplayFor(model => model.IdPhim)" />
                 <p class="info">THỂ LOẠI: @Html.DisplayFor(model => model.loaiPhim.TenLoaiPhim)</p>
                 <p class="info">THỜI LƯỢNG: @Html.DisplayFor(model => model.ThoiLuong)</p>
 
@@ -35,24 +35,32 @@
             <div class="clearfix"></div>
         </div> <br />
 
-        <div class="best-review">
-            <div name="LichChieu" class="container">
-                <table class="table" name="Lich">
-                    <thead>
-                        <tr>
-                            <th scope="col">Thời Gian </th>
-                            <th scope="col">Ngày Chiếu </th>
-                            <th scope="col">Giảm Giá </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="col">hi</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+               <div class="best-review">
+                   @{
+                       string ngay = DateTime.Now.ToString("dd/MM/yyyy");
+                   }
+                   <div name="LichChieu">
+                       <h1 id="ngaychieu">Ngày Chiếu: @ngay </h1><br />
+                       <nav class="navbar navbar-default" style="background-color:black">
+                           <div class="container-fluid">
+                               <ul class="nav nav-menu-header row">
+                                   <li class="active col-sm-1"><button onclick=" chooseLich(2)">T2</button></li>
+                                   <li class="col-sm-1"><button onclick=" chooseLich(3)">T3</button></li>
+                                   <li class="col-sm-1"><button onclick=" chooseLich(4)">T4</button></li>
+                                   <li class="col-sm-1"><button onclick=" chooseLich(5)">T5</button></li>
+                                   <li class="col-sm-1"><button onclick=" chooseLich(6)">T6</button></li>
+                                   <li class="col-sm-1"><button onclick=" chooseLich(7)">T7</button></li>
+                                   <li class="col-sm-1"><button onclick=" chooseLich(8)">CN</button></li>
+                               </ul>
+                           </div>
+                       </nav>
+
+
+                       <div id="contentLich" class="row">
+
+                       </div>
+                   </div>
+               </div>
         <div class="story-review">
             <p>
                 @Html.DisplayFor(model => model.Mota)
@@ -208,56 +216,110 @@
 
     </script>
     @section Scripts{
+        @*Chọn Huận Huyện*@
         <script>
             function fetchAll() {
+
                 $.ajax({
                     method: "GET",
                     url: "../../api/ThanhPhoModels/root"
                 }).done(function (data) {
                     var dataJS = JSON.parse(data);
-                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    var i;
                     $.each(dataJS, function (index, value) {
                         i += `<option value="${value.IdThanhPho}">${value.TenThanhPho}</option>`;
                     });
                     console.log(data);
-                    $('#city').html(i);
+                    $('#city').append(i);
                 });
             }
             fetchAll();
 
             function myCity() {
+                $('#district').empty();
                 $.ajax({
                     method: "GET",
                     url: "../../api/ThanhPhoModels/quanhuyen",
                     data: { 'id': $('#city').val() }
                 }).done(function (data) {
                     var dataJS = JSON.parse(data);
-                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    var i;
                     $.each(dataJS, function (index, value) {
                         i += `<option value="${value.IdQuanHuyen}">${value.TenQuanHuyen}</option>`;
                     });
                     console.log(data);
-                    $('#district').html(i);
+                    $('#district').append(i);
                 });
             }
 
             function myDistrict() {
+                $('#rap').empty();
                 $.ajax({
                     method: "GET",
                     url: "../../api/ThanhPhoModels/rap",
                     data: { 'id': $('#district').val() }
                 }).done(function (data) {
                     var dataJS = JSON.parse(data);
-                    var i = '<option selected hidden>--Chưa Chọn--</option>';
+                    var i;
+
                     $.each(dataJS, function (index, value) {
                         i += `<option value="${value.IdRap}">${value.TenRap}</option>`;
                     });
                     console.log(data);
-                    $('#rap').html(i);
+                    $('#rap').append(i);
                 });
             }
         </script>
-
+        @*Chọn Lịch Chiếu*@
+        <script>
+            function  showLich(ngay) {
+                //alert(id);
+                $('#contentLich').empty();
+                var idphim = $('#idphim').val();
+                var marap = $('#rap').val();
+               
+                    $.ajax({
+                        url: '../../api/LichChieuModelsAPI/Getphim',
+                        data: {
+                            'id': idphim,
+                            'marap': marap,
+                            'ngay': ngay
+                        },
+                        type: 'GET'
+                    }).done(function (repsonse) {
+                        var ds = JSON.parse(repsonse);
+                        if (ds.length == 0) {
+                            alert("Rạp hiện chưa có phim chiếu");
+                        } else {
+                            $.each(ds, function (index, item) {
+                                var data = ` <table class="table table-bordered col-sm-2" >
+                                        <tbody >
+                                                <tr class="table-primary" ><td>`+ item.TenPhong + `</td></tr>
+                                                <tr class="table-active"><td>`+ item.GioBatDau + `</td></tr>
+                                                <tr class="table-active"><td>`+ item.Soluong + `</td></tr>
+                                        </tbody>
+                                             </table>
+                                      `;
+                                $('#contentLich').append(data);
+                            });
+                            console.log(ds);
+                        }
+                    });
+            }
+            function chooseLich(id) {
+                var date = new Date();
+                if (id == 2) {
+                    $('#ngaychieu').html("Ngày Chiếu: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
+                    showLich(date.getDate());
+                } else {
+                    if (id == 3) {
+                        var ngaycong = date.getDate() + 1
+                        $('#ngaychieu').html("Ngày Chiếu: " + ngaycong + "/" + date.getMonth() + "/" + date.getFullYear());
+                        showLich(ngaycong);
+                    } else { alert("Rạp hiện chưa có phim chiếu");}
+                }
+            }
+        </script>
     }
     <script type="text/javascript" src="~/template/js/jquery.flexisel.js"></script>
 </div>

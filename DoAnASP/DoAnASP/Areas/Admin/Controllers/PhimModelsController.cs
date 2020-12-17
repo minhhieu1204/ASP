@@ -9,6 +9,7 @@ using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -25,13 +26,18 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels
         public async Task<IActionResult> Index()
         {
-            var dPContext = _context.phimModels.Include(p => p.loaiPhim);
-            return View(await dPContext.ToListAsync());
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
+
+            var dPContext = _context.phimModels.Include(s=>s.loaiPhim);
+            return View( await dPContext.ToListAsync());
         }
 
         // GET: Admin/PhimModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();
@@ -51,6 +57,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Create
         public IActionResult Create()
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             ViewBag.TypeFilm = _context.loaiPhimModels.ToList();
             return View();
         }
@@ -66,15 +74,14 @@ namespace DoAnASP.Areas.Admin.Controllers
             {
                 _context.Add(phimModel);
                 await _context.SaveChangesAsync();
-                await _context.SaveChangesAsync();
                 var parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", phimModel.IdPhim + "." +
-             ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1]);
+                ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1]);
                 using (var stream = new FileStream(parth, FileMode.Create))
                 {
                     await ful.CopyToAsync(stream);
                 }
+
                 phimModel.HinhAnh = phimModel.IdPhim + "." + ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1];
-                _context.Update(phimModel);
                 _context.Update(phimModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,6 +93,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();
@@ -105,7 +114,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,Mota,MaLoaiPhim")] PhimModel phimModel)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,Mota,MaLoaiPhim")] PhimModel phimModel,IFormFile ful,string hinhanh)
         {
             if (id != phimModel.IdPhim)
             {
@@ -116,6 +125,22 @@ namespace DoAnASP.Areas.Admin.Controllers
             {
                 try
                 {
+                    var parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", hinhanh);
+                    System.IO.File.Delete(parth);
+                    if (ful == null)
+                    {
+                        phimModel.HinhAnh = hinhanh;
+                    }
+                    else
+                    {
+                        parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", phimModel.IdPhim + "." +
+                      ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1]);
+                        using (var stream = new FileStream(parth, FileMode.Create))
+                        {
+                            await ful.CopyToAsync(stream);
+                        }
+                        phimModel.HinhAnh = phimModel.IdPhim + "." + ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1];
+                    }
                     _context.Update(phimModel);
                     await _context.SaveChangesAsync();
                 }
@@ -139,6 +164,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();

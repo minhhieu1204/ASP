@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,27 +11,20 @@ namespace DoAnASP.Areas.Admin.Models
     public class DatVeModel
     {
         [Key]
-        public int IdUser { get; set; }
-        [StringLength(maximumLength: 25, MinimumLength = 10, ErrorMessage = "Value from 10 to 25 character!")]
-        [Required(ErrorMessage = "Please enter  value Username!")]
-        public string Username { get; set; }
-        [StringLength(maximumLength: 25, MinimumLength = 6, ErrorMessage = "Value from 6 to 25 character!")]
-        [Required(ErrorMessage = "Please enter  value Password!")]
-        public string Password { get; set; }
-        [StringLength(maximumLength: 25, MinimumLength = 10, ErrorMessage = "Value from 10 to 25 character!")]
-        [Required(ErrorMessage = "Please enter  value Name!")]
-        public string HoTen { get; set; }
-        [Required(ErrorMessage = "Please enter  value Date of birtday!")]
-        public DateTime NgaySinh { get; set; }
-        public bool GioiTinh { get; set; }
-        [StringLength(maximumLength: 25, MinimumLength = 10, ErrorMessage = "Value from 10 to 25 character!")]
-        [Required(ErrorMessage = "Please enter  value Address!")]
-        public string DiaChi { get; set; }
-        [Phone(ErrorMessage = "Sai Format Phone Number!")]
-        [Required(ErrorMessage = "Please enter  value Phone!")]
-        public string SDT { get; set; }
+        public int IdDatVe { get; set; }
+        public int SoGhe { get; set; }
+        [Required(ErrorMessage ="Please Enter Date Booking Ticket!")]
+        public DateTime NgayDat { get; set; }
+        [Required(ErrorMessage = "Please Enter Date Booking Total Price!")]
+        public double Tonggia { get; set; }
+        [Required(ErrorMessage = "Please Enter Malich!")]
+        public int Malichchieu { get; set; }
+        [ForeignKey("Malichchieu")]
+        public virtual LichChieuModel lichchieu { get; set; }
+        [Required(ErrorMessage = "Please Enter Code guest!")]
+        public int Makhachhang { get; set; }
+        public virtual UserModel User { get; set; }
+        public ICollection<ChiTietDatVeModel> lstChitietdatve { get; set; }
 
-        [DefaultValue(true)]
-        public bool LoaiTaiKhoan { get; set; }
     }
 }

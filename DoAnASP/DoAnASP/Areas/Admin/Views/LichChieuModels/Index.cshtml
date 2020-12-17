@@ -47,7 +47,13 @@
                                 {
                                     <tr class="tr-shadow">
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.NgayChieu)
+                                            @{ 
+                                                var day = item.NgayChieu.Day;
+                                                var month = item.NgayChieu.Month;
+                                                var year = item.NgayChieu.Year;
+                                                string s = day + "/" + month + "/" + year;
+                                            }
+                                            @s
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.GioBatDau)
@@ -59,22 +65,22 @@
                                             @Html.DisplayFor(modelItem => item.GiaVe)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.MaPhong)
+                                            @Html.DisplayFor(modelItem => item.phong.TenPhong)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.MaPhim)
+                                            @Html.DisplayFor(modelItem => item.phim.TenPhim)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.giamGia.IdMaGiamGia)
+                                            @Html.DisplayFor(modelItem => item.giamGia.PhanTram)%
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id="@item.IdLichChieu" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a asp-action="Edit" asp-route-id="@item.IdLichChieu" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id="@item.IdLichChieu" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdLichChieu" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
