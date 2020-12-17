@@ -83,10 +83,11 @@
                     method: "GET",
                     url: "../../api/SearchAPI/search",
                     data: { 'keyword': $("#keyword").val() }
-                }).done(function (data) {
+                }).done(function (data) { 
                     var cc = JSON.parse(data);
                      var i = '';
                     $.each(cc, function (index, value) {
+                        
                          i += ` <tr class="tr-shadow">
                                         <td>`+
                             value.TenPhim
