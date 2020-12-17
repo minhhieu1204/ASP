@@ -32,8 +32,9 @@ namespace DoAnASP.Migrations
                     b.Property<int>("MaDatVe")
                         .HasColumnType("int");
 
-                    b.Property<int>("SoGhe")
-                        .HasColumnType("int");
+                    b.Property<string>("TenGhe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdChiTietDatVe");
 

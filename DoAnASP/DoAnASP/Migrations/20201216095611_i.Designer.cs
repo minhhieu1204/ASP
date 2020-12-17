@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnASP.Migrations
 {
     [DbContext(typeof(DPContext))]
-    [Migration("20201211080535_i")]
+    [Migration("20201216095611_i")]
     partial class i
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,8 +34,9 @@ namespace DoAnASP.Migrations
                     b.Property<int>("MaDatVe")
                         .HasColumnType("int");
 
-                    b.Property<int>("SoGhe")
-                        .HasColumnType("int");
+                    b.Property<string>("TenGhe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdChiTietDatVe");
 

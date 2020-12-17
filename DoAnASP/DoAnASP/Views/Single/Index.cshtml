@@ -8,19 +8,19 @@
                 <a asp-action="Index" asp-controller="Single"><img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(model => model.HinhAnh)" alt="" /></a>
             </div>
             <div class="review-info">
-                <a class="span" > @Html.DisplayFor(model => model.TenPhim)</a>
+                <a class="span"> @Html.DisplayFor(model => model.TenPhim)</a>
                 <input id="idphim" type="hidden" value="@Html.DisplayFor(model => model.IdPhim)" />
                 <p class="info">THỂ LOẠI: @Html.DisplayFor(model => model.loaiPhim.TenLoaiPhim)</p>
                 <p class="info">THỜI LƯỢNG: @Html.DisplayFor(model => model.ThoiLuong)</p>
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <select class="custom-select" id="city"  onchange="myCity()">
+                        <select class="custom-select" id="city" onchange="myCity()">
                             <option>--Chưa Chọn--</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <select class="custom-select" id="district"  onchange="myDistrict()">
+                        <select class="custom-select" id="district" onchange="myDistrict()">
                             <option>--Chưa Chọn--</option>
                         </select>
                     </div>
@@ -35,46 +35,50 @@
             <div class="clearfix"></div>
         </div> <br />
 
-               <div class="best-review">
-                   @{
-                       string ngay = DateTime.Now.ToString("dd/MM/yyyy");
-                   }
-                   <div name="LichChieu">
-                       <h1 id="ngaychieu">Ngày Chiếu: @ngay </h1><br />
-                       <nav class="navbar navbar-default" style="background-color:black">
-                           <div class="container-fluid">
-                               <ul class="nav nav-menu-header row">
-                                   <li class="active col-sm-1"><button onclick=" chooseLich(2)">T2</button></li>
-                                   <li class="col-sm-1"><button onclick=" chooseLich(3)">T3</button></li>
-                                   <li class="col-sm-1"><button onclick=" chooseLich(4)">T4</button></li>
-                                   <li class="col-sm-1"><button onclick=" chooseLich(5)">T5</button></li>
-                                   <li class="col-sm-1"><button onclick=" chooseLich(6)">T6</button></li>
-                                   <li class="col-sm-1"><button onclick=" chooseLich(7)">T7</button></li>
-                                   <li class="col-sm-1"><button onclick=" chooseLich(8)">CN</button></li>
-                               </ul>
-                           </div>
-                       </nav>
+        <div class="best-review">
+            @{
+                string ngay = DateTime.Now.ToString("dd/MM/yyyy");
+            }
+            <div name="LichChieu">
+                <h1 id="ngaychieu">Ngày Chiếu: @ngay </h1><br />
+                <nav class="navbar navbar-default" style="background-color:black">
+                    <div class="container-fluid">
+                        <ul class="nav nav-menu-header row">
+                            <li class="active col-sm-1"><button onclick=" chooseLich(2)">T2</button></li>
+                            <li class="col-sm-1"><button onclick=" chooseLich(3)">T3</button></li>
+                            <li class="col-sm-1"><button onclick=" chooseLich(4)">T4</button></li>
+                            <li class="col-sm-1"><button onclick=" chooseLich(5)">T5</button></li>
+                            <li class="col-sm-1"><button onclick=" chooseLich(6)">T6</button></li>
+                            <li class="col-sm-1"><button onclick=" chooseLich(7)">T7</button></li>
+                            <li class="col-sm-1"><button onclick=" chooseLich(8)">CN</button></li>
+                        </ul>
+                    </div>
+                </nav>
 
 
-                       <div id="contentLich" class="row">
+                <div id="contentLich" class="row">
 
-                       </div>
-                   </div>
-               </div>
+                </div>
+            </div>
+        </div>
         <div class="story-review">
             <p>
                 @Html.DisplayFor(model => model.Mota)
             </p>
         </div>
-        <!-- comments-section-starts -->
-        <div class="comments-section">
+        <!-- phần ghe ngồi -->
+       
+        <div class="col-12" style="margin:10px 0">
+            <div class="col-7" style="display:inline-block" id="ghengoi">
 
+            </div>
+            <div class="col-4" style="display:inline-block" id="hoadon">
+               
+            </div>
         </div>
-        <!-- comments-section-ends -->
-        <div class="reply-section">
 
 
-        </div>
+
     </div>
     <div class="col-md-3 side-bar">
         <div class="featured">
@@ -243,7 +247,7 @@
                     data: { 'id': $('#city').val() }
                 }).done(function (data) {
                     var dataJS = JSON.parse(data);
-                    var i;
+                    var i = `<option value="">Chưa chọn</option>`;
                     $.each(dataJS, function (index, value) {
                         i += `<option value="${value.IdQuanHuyen}">${value.TenQuanHuyen}</option>`;
                     });
@@ -260,7 +264,7 @@
                     data: { 'id': $('#district').val() }
                 }).done(function (data) {
                     var dataJS = JSON.parse(data);
-                    var i;
+                    var i = `<option value="">Chưa chọn</option>`;
 
                     $.each(dataJS, function (index, value) {
                         i += `<option value="${value.IdRap}">${value.TenRap}</option>`;
@@ -292,13 +296,14 @@
                             alert("Rạp hiện chưa có phim chiếu");
                         } else {
                             $.each(ds, function (index, item) {
-                                var data = ` <table class="table table-bordered col-sm-2" >
+                                var data = ` <a  onclick="danhSachGheDaChon(` + item.IdLichChieu
+                                    +`)"> <table class="table table-bordered col-sm-2" >
                                         <tbody >
-                                                <tr class="table-primary" ><td>`+ item.TenPhong + `</td></tr>
+                                                <tr class="table-primary" ><td> ` + item.TenPhong + ` </td></tr>
                                                 <tr class="table-active"><td>`+ item.GioBatDau + `</td></tr>
                                                 <tr class="table-active"><td>`+ item.Soluong + `</td></tr>
                                         </tbody>
-                                             </table>
+                                             </table> </a>
                                       `;
                                 $('#contentLich').append(data);
                             });
@@ -320,6 +325,112 @@
                 }
             }
         </script>
+
+        <script>
+            var dsGheDaChon = [];
+            var gheDangChon=[];
+            var tongGia = 0;
+            var idLichChieu;
+
+            function danhSachGheTrong(idlichchieu)
+            {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/SingleAPI/DanhSachGheTrong",
+                    data: { 'id': idlichchieu }
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    var dsghe = "";
+                    var i = 0;
+                    $.each(dataJS, function (index, value) {
+                        if (dsGheDaChon.indexOf(value.TenGhe) != -1) {
+                            dsghe += `<button type="button" disable class="btn btn-danger">` + value.TenGhe + `</button>`;
+                        }
+                        else
+                            dsghe += `<button type="button" id="` + value.TenGhe + `" onclick="ChonGhe('` + value.TenGhe +
+                                `',` + value.GiaLoaiGhe + `)" class="btn btn-default">` + value.TenGhe + `</button>`;
+                            
+                        i++;
+                        if (i % 10 == 0)
+                            dsghe += `<br>`
+                        console.log(dsGheDaChon.indexOf(value["TenGhe"]));
+                        
+                     });
+                    $('#ghengoi').html(dsghe);
+
+                    var hoadon = ` <h3>Ghế: </h3>
+                                <p>Giá: 0 VND</p>
+                                <button onclick="ThanhToan()" class="btn btn-success"> Thanh Toán </button>`;
+
+                    $('#hoadon').html(hoadon);
+                });
+            }
+
+            function danhSachGheDaChon(idlichchieu) {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/SingleAPI/DanhSachGheDaChon",
+                    data: { 'id': idlichchieu }
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    dsGheDaChon = dataJS.map(function (x) {
+                        return x["TenGhe"];
+                    });
+                });
+                console.log("---------------------------------");
+                console.log(dsGheDaChon);
+                idLichChieu = idlichchieu;
+                danhSachGheTrong(idlichchieu);
+            }
+
+            function ChonGhe(tenGhe, giaLoaiVe) {
+                console.log(tenGhe);
+                $('#' + tenGhe).attr('class', 'btn btn-success');
+                $('#' + tenGhe).attr('onclick', 'BoChonGhe("' + tenGhe + '",' + giaLoaiVe+')');
+                gheDangChon.push(tenGhe);
+                tongGia += giaLoaiVe;
+                document.querySelector('#hoadon h3').innerHTML = "Ghế: " + gheDangChon.toString();
+                document.querySelector('#hoadon p').innerHTML = "Giá: " + tongGia + " VND";
+            }
+
+            function BoChonGhe(tenGhe, giaLoaiVe) {
+                console.log(tenGhe);
+                $('#' + tenGhe).attr('class', 'btn btn-default');
+                $('#' + tenGhe).attr('onclick', 'ChonGhe("' + tenGhe + '",' + giaLoaiVe +')');
+                gheDangChon.splice(gheDangChon.indexOf(tenGhe), 1);
+                tongGia -= giaLoaiVe;
+                document.querySelector('#hoadon h3').innerHTML = "Ghế: " + gheDangChon.toString();
+                document.querySelector('#hoadon p').innerHTML = "Giá: " + tongGia + " VND";
+                console.log(gheDangChon);
+            }
+
+            function ThanhToan() {
+                $.ajax({
+                    method: "GET",
+                    url: "../../api/SingleAPI/ThanhToan",
+                    data: {
+                        'dsGheChon': JSON.stringify(gheDangChon),
+                        'tongGia': tongGia,
+                        'idLichChieu': idLichChieu
+                    }
+                }).done(function (data) {
+                    var dataJS = JSON.parse(data);
+                    if (dataJS[0] == 1) {
+                        alert("Đặt vé thành công!");
+                        dsGheDaChon = [];
+                        gheDangChon = [];
+                        tongGia = 0;
+                    }
+                    else
+                        alert("Đặt vé chưa thành công!");
+                    danhSachGheDaChon(idLichChieu);
+                });
+                
+            }
+        </script>
+    
     }
+
+
     <script type="text/javascript" src="~/template/js/jquery.flexisel.js"></script>
 </div>

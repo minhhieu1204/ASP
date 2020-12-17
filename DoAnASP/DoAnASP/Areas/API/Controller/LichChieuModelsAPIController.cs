@@ -42,6 +42,7 @@ namespace DoAnASP.Areas.API.Controller
                             where s.MaRap==marap
                             select new
                             {
+                                k.IdLichChieu,
                                 s.TenPhong,
                                 k.GioBatDau,
                                 Soluong=s.lstGhe.Count

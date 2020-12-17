@@ -38,7 +38,7 @@ namespace DoAnASP.Areas.Admin.Models
 
 
         [StringLength(10)]
-        [RegularExpression(@"^[0]-[0-9]{9}$")]
+        [RegularExpression(@"^[0][0-9]{9}$")]
         [Required(ErrorMessage = "Số điện thoại không hợp lệ")]
         public string SDT { get; set; }
 

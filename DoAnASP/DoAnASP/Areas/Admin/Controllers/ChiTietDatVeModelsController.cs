@@ -58,7 +58,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdChiTietDatVe,SoGhe,GiaVe,MaDatVe")] ChiTietDatVeModel chiTietDatVeModel)
+        public async Task<IActionResult> Create([Bind("IdChiTietDatVe,TenGhe,GiaVe,MaDatVe")] ChiTietDatVeModel chiTietDatVeModel)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdChiTietDatVe,SoGhe,GiaVe,MaDatVe")] ChiTietDatVeModel chiTietDatVeModel)
+        public async Task<IActionResult> Edit(int id, [Bind("IdChiTietDatVe,TenGhe,GiaVe,MaDatVe")] ChiTietDatVeModel chiTietDatVeModel)
         {
             if (id != chiTietDatVeModel.IdChiTietDatVe)
             {

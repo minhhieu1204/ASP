@@ -265,7 +265,7 @@ namespace DoAnASP.Migrations
                 {
                     IdChiTietDatVe = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SoGhe = table.Column<int>(nullable: false),
+                    TenGhe = table.Column<string>(nullable: false),
                     GiaVe = table.Column<double>(nullable: false),
                     MaDatVe = table.Column<int>(nullable: false)
                 },
