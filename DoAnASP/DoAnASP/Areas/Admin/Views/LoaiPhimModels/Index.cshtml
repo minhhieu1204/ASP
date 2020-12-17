@@ -10,6 +10,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive table-responsive-data2">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" id="keysearch" placeholder="Nhập loại phim..." />
+                            <button class="au-btn--submit" id="btn_search">
+                                <i class="zmdi zmdi-search"></i>
+                            </button>
+                       </div>
                         <h1>Loại Phim</h1>
 
                         <p>
@@ -31,12 +37,12 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id="@item.IdLoaiPhim" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a asp-action="Edit" asp-route-id="@item.IdLoaiPhim" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id="@item.IdLoaiPhim" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdLoaiPhim" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -49,3 +55,38 @@
         </div>
     </div>
 </div>
+@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            $("#btn_search").click(function () {
+                $.ajax({
+                    method: "GET",
+                    url: "../../API/APISearchLoaiPhim/GetData",
+                    data: { 'keyword': $("#keysearch").val() }
+                }).done(function (data) {
+                    var item = JSON.parse(data);
+                    console.log(data);
+                    var i = '';
+                    $.each(item, function (index, value) {
+                        i = `<tr class="tr-shadow">
+                                            <td>` +
+                            value.TenLoaiPhim +
+                            `</td>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <button asp-action="Edit" asp-route-id="`+ value.IdLoaiPhim + `" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </button>
+                                                    <button asp-action="Delete" asp-route-id="`+ value.IdLoaiPhim + `" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <i class="zmdi zmdi-delete"></i>
+                                                    </button >
+                                                    </div >
+                                                </td >
+                                            </tr >`;
+                    });
+                    $('tbody').html(i)
+                });
+                });
+            });
+    </script>
+}
