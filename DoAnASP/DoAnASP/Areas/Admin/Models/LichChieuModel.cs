@@ -18,27 +18,25 @@ namespace DoAnASP.Areas.Admin.Models
         public TimeSpan GioBatDau { get; set; }
         [Required(ErrorMessage = "Please enter  value Time End!")]
         public TimeSpan GioKetThuc { get; set; }
-        [Required(ErrorMessage = "Please enter  value Time End!")]
-        [StringLength(9)]
+        [Required(ErrorMessage = "Please enter  value Price!")]
+       
         public double GiaVe { get; set; }
 
         public int MaPhong { get; set; }
 
         [ForeignKey("MaPhong")]
+        public virtual PhongModel phong { get; set; }
 
         public int MaPhim { get; set; }
 
         [ForeignKey("MaPhim")]
+        public virtual PhimModel phim { get; set; }
 
         public int MaGiamGia { get; set; }
 
         [ForeignKey("MaGiamGia")]
 
         public virtual GiamGiaModel giamGia { get; set; }
-
-        public virtual PhongModel phong { get; set; }
-
-        public virtual PhimModel phim { get; set; }
 
         public ICollection<DatVeModel> lstDatVe { get; set; }
     }

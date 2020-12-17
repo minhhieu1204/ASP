@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -23,12 +25,16 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/UserModels
         public async Task<IActionResult> Index()
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             return View(await _context.userModels.ToListAsync());
         }
 
         // GET: Admin/UserModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();
@@ -47,6 +53,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/UserModels/Create
         public IActionResult Create()
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             return View();
         }
 
@@ -59,6 +67,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                userModel.Password = StringProcess.CreateMD5Hash(userModel.Password).ToString();
                 _context.Add(userModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -69,6 +78,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/UserModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();
@@ -120,6 +131,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/UserModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();

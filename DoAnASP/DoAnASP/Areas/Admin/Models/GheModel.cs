@@ -11,7 +11,7 @@ namespace DoAnASP.Areas.Admin.Models
     {
         [Key]
         public int IdGhe { get; set; }
-        [StringLength(maximumLength: 25, MinimumLength = 10, ErrorMessage = "Value from 10 to 25 character!")]
+        [StringLength(maximumLength: 25, MinimumLength = 2, ErrorMessage = "Value from 10 to 25 character!")]
         [Required(ErrorMessage = "Please enter  value Chair!")]
         public string TenGhe { get; set; }
 

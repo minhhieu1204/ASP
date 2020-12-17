@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {}
+    "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {
+    "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+        "projectUniqueName": "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
         "projectName": "DoAnASP",
-        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\obj\\",
+        "projectPath": "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+        "outputPath": "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,14 +38,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.0, )"
-            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[3.1.10, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
@@ -54,11 +52,15 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[3.1.10, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
             }
           },
           "imports": [
@@ -79,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
