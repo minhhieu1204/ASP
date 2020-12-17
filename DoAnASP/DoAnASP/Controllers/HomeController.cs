@@ -49,15 +49,15 @@ namespace DoAnASP.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(UserModel userModel)
         {
-            var r = _context.userModels.Where(m => m.Username == userModel.Username && m.Password == StringProcess.CreateMD5Hash(userModel.Password)).ToList();
-            if (r.Count == 0)
+            var r = _context.userModels.FirstOrDefault(m => m.Username == userModel.Username && m.Password == StringProcess.CreateMD5Hash(userModel.Password));
+            if (r.IdUser == null)
             {
                 return View("Login");
             }
-            var str = JsonConvert.SerializeObject(userModel);
+            var str = JsonConvert.SerializeObject(r);
             HttpContext.Session.SetString("User", str);
             i++;
-            if (r[0].LoaiTaiKhoan == true)
+            if (r.LoaiTaiKhoan == true)
             {
                 var url = Url.RouteUrl(new { controller = "PhimModels", action = "Index", area = "Admin" });
                 return Redirect(url);

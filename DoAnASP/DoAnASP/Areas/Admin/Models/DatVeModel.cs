@@ -12,19 +12,26 @@ namespace DoAnASP.Areas.Admin.Models
     {
         [Key]
         public int IdDatVe { get; set; }
-        public int SoGhe { get; set; }
-        [Required(ErrorMessage ="Please Enter Date Booking Ticket!")]
-        public DateTime NgayDat { get; set; }
-        [Required(ErrorMessage = "Please Enter Date Booking Total Price!")]
-        public double Tonggia { get; set; }
-        [Required(ErrorMessage = "Please Enter Malich!")]
-        public int Malichchieu { get; set; }
-        [ForeignKey("Malichchieu")]
-        public virtual LichChieuModel lichchieu { get; set; }
-        [Required(ErrorMessage = "Please Enter Code guest!")]
-        public int Makhachhang { get; set; }
-        public virtual UserModel User { get; set; }
-        public ICollection<ChiTietDatVeModel> lstChitietdatve { get; set; }
 
+        public int SoGhe { get; set; }
+
+        public DateTime NgayDat { get; set; }
+
+        public double TongGia { get; set; }
+
+        public int MaLichChieu { get; set; }
+
+        public bool TrangThaiThanhToan { get; set; }
+
+        [ForeignKey("MaLichChieu")]
+
+        public virtual LichChieuModel lichChieu { get; set; }
+        public int MaKhachHang { get; set; }
+
+        [ForeignKey("MaKhachHang")]
+
+        public virtual UserModel khachHang { get; set; }
+
+        public ICollection<ChiTietDatVeModel> lstChiTietDatVe { get; set; }
     }
 }

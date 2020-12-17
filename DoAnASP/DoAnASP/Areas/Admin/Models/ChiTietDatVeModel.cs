@@ -12,7 +12,7 @@ namespace DoAnASP.Areas.Admin.Models
         [Key]
         public int IdChiTietDatVe { get; set; }
         [Required(ErrorMessage = "Please enter Number Chair!")]
-        public int SoGhe { get; set; }
+        public string TenGhe { get; set; }
         public double GiaVe { get; set; }
 
         public int MaDatVe { get; set; }

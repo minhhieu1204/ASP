@@ -23,7 +23,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/DatVeModels
         public async Task<IActionResult> Index()
         {
-            var dPContext = _context.datVeModels.Include(d => d.lichchieu);
+            var dPContext = _context.datVeModels.Include(d => d.khachHang).Include(d => d.lichChieu);
             return View(await dPContext.ToListAsync());
         }
 
@@ -36,7 +36,8 @@ namespace DoAnASP.Areas.Admin.Controllers
             }
 
             var datVeModel = await _context.datVeModels
-                .Include(d => d.lichchieu)
+                .Include(d => d.khachHang)
+                .Include(d => d.lichChieu)
                 .FirstOrDefaultAsync(m => m.IdDatVe == id);
             if (datVeModel == null)
             {
@@ -49,7 +50,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/DatVeModels/Create
         public IActionResult Create()
         {
-            ViewData["Malichchieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu");
+            ViewData["MaKhachHang"] = new SelectList(_context.userModels, "IdUser", "DiaChi");
+            ViewData["MaLichChieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu");
             return View();
         }
 
@@ -58,7 +60,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDatVe,SoGhe,NgayDat,Tonggia,Malichchieu,Makhachhang")] DatVeModel datVeModel)
+        public async Task<IActionResult> Create([Bind("IdDatVe,SoGhe,NgayDat,TongGia,MaLichChieu,TrangThaiThanhToan,MaKhachHang")] DatVeModel datVeModel)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +68,8 @@ namespace DoAnASP.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Malichchieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu", datVeModel.Malichchieu);
+            ViewData["MaKhachHang"] = new SelectList(_context.userModels, "IdUser", "DiaChi", datVeModel.MaKhachHang);
+            ViewData["MaLichChieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu", datVeModel.MaLichChieu);
             return View(datVeModel);
         }
 
@@ -83,7 +86,8 @@ namespace DoAnASP.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["Malichchieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu", datVeModel.Malichchieu);
+            ViewData["MaKhachHang"] = new SelectList(_context.userModels, "IdUser", "DiaChi", datVeModel.MaKhachHang);
+            ViewData["MaLichChieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu", datVeModel.MaLichChieu);
             return View(datVeModel);
         }
 
@@ -92,7 +96,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdDatVe,SoGhe,NgayDat,Tonggia,Malichchieu,Makhachhang")] DatVeModel datVeModel)
+        public async Task<IActionResult> Edit(int id, [Bind("IdDatVe,SoGhe,NgayDat,TongGia,MaLichChieu,TrangThaiThanhToan,MaKhachHang")] DatVeModel datVeModel)
         {
             if (id != datVeModel.IdDatVe)
             {
@@ -119,7 +123,8 @@ namespace DoAnASP.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Malichchieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu", datVeModel.Malichchieu);
+            ViewData["MaKhachHang"] = new SelectList(_context.userModels, "IdUser", "DiaChi", datVeModel.MaKhachHang);
+            ViewData["MaLichChieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu", datVeModel.MaLichChieu);
             return View(datVeModel);
         }
 
@@ -132,7 +137,8 @@ namespace DoAnASP.Areas.Admin.Controllers
             }
 
             var datVeModel = await _context.datVeModels
-                .Include(d => d.lichchieu)
+                .Include(d => d.khachHang)
+                .Include(d => d.lichChieu)
                 .FirstOrDefaultAsync(m => m.IdDatVe == id);
             if (datVeModel == null)
             {

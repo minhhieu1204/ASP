@@ -20,13 +20,16 @@
                 @Html.DisplayNameFor(model => model.NgayDat)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tonggia)
+                @Html.DisplayNameFor(model => model.TongGia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.lichchieu)
+                @Html.DisplayNameFor(model => model.TrangThaiThanhToan)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Makhachhang)
+                @Html.DisplayNameFor(model => model.lichChieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.khachHang)
             </th>
             <th></th>
         </tr>
@@ -41,13 +44,16 @@
                 @Html.DisplayFor(modelItem => item.NgayDat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tonggia)
+                @Html.DisplayFor(modelItem => item.TongGia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.lichchieu.IdLichChieu)
+                @Html.DisplayFor(modelItem => item.TrangThaiThanhToan)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Makhachhang)
+                @Html.DisplayFor(modelItem => item.lichChieu.IdLichChieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.khachHang.DiaChi)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdDatVe">Edit</a> |
