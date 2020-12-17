@@ -64,43 +64,34 @@
         <script type="text/javascript" src="~/template//js/jquery.flexisel.js"></script>
     </div>
 <div class="video">
-    <iframe src="https://www.youtube.com/embed/2LqzF5WauAw" frameborder="0" allowfullscreen></iframe>
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/FsvD9Njmb1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <div class="news">
     <div class="col-md-6 news-left-grid">
         <h3>Don’t be late,</h3>
         <h2>Book your ticket now!</h2>
         <h4>Easy, simple & fast.</h4>
-        <a href="#"><i class="book"></i>BOOK TICKET</a>
-        <p>Get Discount up to <strong>10%</strong> if you are a member!</p>
+        <a asp-controller="Single" asp-action="Index" asp-route-id="9"><i class="book"></i>BOOK TICKET</a>
     </div>
     <div class="col-md-6 news-right-grid">
-        <h3>News</h3>
+        <h3>Descriptions</h3>
         <div class="news-grid">
-            <h5>Lorem Ipsum Dolor Sit Amet</h5>
-            <label>Nov 11 2014</label>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+            <p>Mỗi dịp Giáng sinh về, người hâm mộ sẽ truyền tai nhau về bộ phim Home Alone. Hình tượng nhân vật được khắc họa rõ nét. Bộ phim sẽ là lựa chọn cho nhiều gia đình muốn cùng nhau xem trong đêm giáng sinh hoặc những ngày cuối tuần đầy thư giãn. Ở nhà một mình (Home Alone) phát hành vào năm 1990
+            , thời lượng 103 phút (đạt 581,1 triệu USD doanh thu)</p>
         </div>
-        <div class="news-grid">
-            <h5>Lorem Ipsum Dolor Sit Amet</h5>
-            <label>Nov 11 2014</label>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-        </div>
-        <a class="more" href="#">MORE</a>
     </div>
     <div class="clearfix"></div>
 </div>
-<div class="more-reviews">
+<div class="more-reviews" style="background-color: #dfb636">
     <ul id="flexiselDemo2">
         @{
             int a = 0;
             @foreach (var item in Model)
             {
 
-
-                @if (a <= 6)
+                @if (a>6)
                 {
-                    <li><img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" alt="" style="width:331,5px; height:186px;" /></li>
+                    <li title="@item.TenPhim"><a asp-controller="Single" asp-action="Index" asp-route-id="@item.IdPhim"><img  src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" alt="" style="width: 221px; height: 124px;" /></a></li>
                 }
                 a++;
             }

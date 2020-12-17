@@ -24,11 +24,9 @@ namespace DoAnASP.Areas.Admin.Models
         
         public string HinhAnh { get; set; }
         public string Mota { get; set; }
-
+        public string LinkPhim { get; set; }
         public int MaLoaiPhim { get; set; }
-
         [ForeignKey("MaLoaiPhim")]
-
         public virtual LoaiPhimModel loaiPhim { get; set; }
 
         public ICollection<LichChieuModel> lstLichChieu { get; set; }
