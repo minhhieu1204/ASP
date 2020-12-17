@@ -1,7 +1,9 @@
 ﻿using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,7 +84,9 @@ namespace DoAnASP.Areas.API.Controller
                     datVeModel.TongGia = int.Parse(tongGia);
                     datVeModel.MaLichChieu = int.Parse(idLichChieu);
                     datVeModel.TrangThaiThanhToan = true;
-                    datVeModel.MaKhachHang = 1;
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+
+                    datVeModel.MaKhachHang = int.Parse( us.SelectToken("IdUser").ToString()); 
                     _context.Add(datVeModel);
                     _context.SaveChanges();
                 }

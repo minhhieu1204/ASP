@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnASP.Migrations
 {
     [DbContext(typeof(DPContext))]
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201216095611_i.Designer.cs
-    [Migration("20201216095611_i")]
+    [Migration("20201217080132_i")]
     partial class i
-=======
-    [Migration("20201211092723_db_chinh")]
-    partial class db_chinh
->>>>>>> Chinh:DoAnASP/DoAnASP/Migrations/20201211092723_db_chinh.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,17 +52,10 @@ namespace DoAnASP.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201216095611_i.Designer.cs
                     b.Property<int>("MaKhachHang")
                         .HasColumnType("int");
 
                     b.Property<int>("MaLichChieu")
-=======
-                    b.Property<int>("Makhachhang")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Malichchieu")
->>>>>>> Chinh:DoAnASP/DoAnASP/Migrations/20201211092723_db_chinh.Designer.cs
                         .HasColumnType("int");
 
                     b.Property<DateTime>("NgayDat")
@@ -76,7 +64,6 @@ namespace DoAnASP.Migrations
                     b.Property<int>("SoGhe")
                         .HasColumnType("int");
 
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201216095611_i.Designer.cs
                     b.Property<double>("TongGia")
                         .HasColumnType("float");
 
@@ -88,19 +75,6 @@ namespace DoAnASP.Migrations
                     b.HasIndex("MaKhachHang");
 
                     b.HasIndex("MaLichChieu");
-=======
-                    b.Property<double>("Tonggia")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("UserIdUser")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdDatVe");
-
-                    b.HasIndex("Malichchieu");
-
-                    b.HasIndex("UserIdUser");
->>>>>>> Chinh:DoAnASP/DoAnASP/Migrations/20201211092723_db_chinh.Designer.cs
 
                     b.ToTable("datVeModels");
                 });
@@ -236,6 +210,9 @@ namespace DoAnASP.Migrations
                     b.Property<string>("HinhAnh")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<string>("LinkPhim")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaLoaiPhim")
                         .HasColumnType("int");
@@ -374,8 +351,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("SDT")
                         .IsRequired()
@@ -394,11 +371,7 @@ namespace DoAnASP.Migrations
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.ChiTietDatVeModel", b =>
                 {
                     b.HasOne("DoAnASP.Areas.Admin.Models.DatVeModel", "datVe")
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201216095611_i.Designer.cs
                         .WithMany("lstChiTietDatVe")
-=======
-                        .WithMany("lstChitietdatve")
->>>>>>> Chinh:DoAnASP/DoAnASP/Migrations/20201211092723_db_chinh.Designer.cs
                         .HasForeignKey("MaDatVe")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -406,7 +379,6 @@ namespace DoAnASP.Migrations
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.DatVeModel", b =>
                 {
-<<<<<<< HEAD:DoAnASP/DoAnASP/Migrations/20201216095611_i.Designer.cs
                     b.HasOne("DoAnASP.Areas.Admin.Models.UserModel", "khachHang")
                         .WithMany()
                         .HasForeignKey("MaKhachHang")
@@ -418,17 +390,6 @@ namespace DoAnASP.Migrations
                         .HasForeignKey("MaLichChieu")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-=======
-                    b.HasOne("DoAnASP.Areas.Admin.Models.LichChieuModel", "lichchieu")
-                        .WithMany("lstDatVe")
-                        .HasForeignKey("Malichchieu")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DoAnASP.Areas.Admin.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserIdUser");
->>>>>>> Chinh:DoAnASP/DoAnASP/Migrations/20201211092723_db_chinh.Designer.cs
                 });
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.GheModel", b =>
