@@ -28,6 +28,12 @@ namespace DoAnASP
         {
            
             services.AddControllersWithViews();
+            services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromSeconds(3000);
+                option.Cookie.HttpOnly = true;
+                option.Cookie.IsEssential = true;
+            });
             services.AddDbContext<DPContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DPContext")));
         }
 
@@ -46,7 +52,7 @@ namespace DoAnASP
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -59,7 +65,7 @@ namespace DoAnASP
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
             });
         }
     }

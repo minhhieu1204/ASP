@@ -1050,3 +1050,7 @@ E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.WebPag
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\scopedcss\bundle\DoAnASP.styles.css
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\ListFlims.cshtml.g.cs

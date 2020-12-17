@@ -14,7 +14,7 @@ namespace DoAnASP.Areas.Admin.Models
         [StringLength(maximumLength: 25, MinimumLength = 10, ErrorMessage = "Value from 10 to 25 character!")]
         [Required(ErrorMessage = "Please enter  value Username!")]
         public string Username { get; set; }
-        [StringLength(maximumLength: 25, MinimumLength = 6, ErrorMessage = "Value from 6 to 25 character!")]
+        [StringLength(maximumLength: 100, MinimumLength = 6, ErrorMessage = "Value from 6 to 100 character!")]
         [Required(ErrorMessage = "Please enter  value Password!")]
         public string Password { get; set; }
         [StringLength(maximumLength: 50, MinimumLength = 10, ErrorMessage = "Value from 10 to 50 character!")]

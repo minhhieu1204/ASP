@@ -19,7 +19,7 @@ namespace DoAnASP.Migrations
                 {
                     table.PrimaryKey("PK_giamGiaModels", x => x.IdMaGiamGia);
                 });
-
+      
             migrationBuilder.CreateTable(
                 name: "loaiGheModels",
                 columns: table => new
@@ -90,6 +90,7 @@ namespace DoAnASP.Migrations
                     ThoiLuong = table.Column<TimeSpan>(nullable: false),
                     HinhAnh = table.Column<string>(maxLength: 255, nullable: true),
                     Mota = table.Column<string>(nullable: true),
+                    LinkPhim= table.Column<string>(nullable: true),
                     MaLoaiPhim = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

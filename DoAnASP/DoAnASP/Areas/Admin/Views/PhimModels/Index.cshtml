@@ -35,7 +35,7 @@
                                     <th>Thời lượng</th>
                                     <th>Hình ảnh</th>
                                     <th>Loại phim</th>
-                                    <th></th>
+                                    <th>Link Phim</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,6 +54,7 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.loaiPhim.TenLoaiPhim)
                                         </td>
+                                        <td> @Html.DisplayFor(modelItem => item.LinkPhim)</td>
                                         <td>
                                             <div class="table-data-feature">
                                                 <a asp-action="Edit" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
