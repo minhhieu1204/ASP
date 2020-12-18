@@ -21,11 +21,30 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
+        private string username = null;
         // GET: Admin/LoaiGheModels
         public async Task<IActionResult> Index()
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("Username").ToString();
+
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username = us.SelectToken("IdUser").ToString();
+                    ViewBag.Username = username;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
             return View(await _context.loaiGheModels.ToListAsync());
         }
 
@@ -52,8 +71,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/LoaiGheModels/Create
         public IActionResult Create()
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("Username").ToString();
+            ViewBag.Username = username;
             return View();
         }
 
@@ -76,8 +94,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/LoaiGheModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("Username").ToString();
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -129,8 +146,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/LoaiGheModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("Username").ToString();
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();

@@ -31,8 +31,26 @@ namespace DoAnASP.Controllers
 
         public async Task<IActionResult> Index()
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("IdUser").ToString();
+            ViewBag.PhimCuoi = _context.phimModels;
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    ViewBag.Username = us.SelectToken("IdUser").ToString();
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
+
+            ViewBag.Loginsai = "Bạn nhập sai tài khoản mời nhập lại";
             var dPContext = _context.phimModels.Include(p => p.loaiPhim);
             return View(await dPContext.ToListAsync());
         }
@@ -50,9 +68,9 @@ namespace DoAnASP.Controllers
         public IActionResult Login(UserModel userModel)
         {
             var r = _context.userModels.FirstOrDefault(m => m.Username == userModel.Username && m.Password == StringProcess.CreateMD5Hash(userModel.Password));
-            if (r.IdUser == null)
+            if (r==null)
             {
-                return View("Login");
+              return  RedirectToAction("Login", "Home");
             }
             var str = JsonConvert.SerializeObject(r);
             HttpContext.Session.SetString("User", str);

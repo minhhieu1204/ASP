@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -19,10 +21,29 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        private string username;
         // GET: Admin/DatVeModels
         public async Task<IActionResult> Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username = us.SelectToken("IdUser").ToString();
+                    ViewBag.Username = username;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
             var dPContext = _context.datVeModels.Include(d => d.khachHang).Include(d => d.lichChieu);
             return View(await dPContext.ToListAsync());
         }
@@ -50,6 +71,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/DatVeModels/Create
         public IActionResult Create()
         {
+            ViewBag.Username = username;
             ViewData["MaKhachHang"] = new SelectList(_context.userModels, "IdUser", "DiaChi");
             ViewData["MaLichChieu"] = new SelectList(_context.lichChieuModels, "IdLichChieu", "IdLichChieu");
             return View();
@@ -76,6 +98,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/DatVeModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -131,6 +154,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/DatVeModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
