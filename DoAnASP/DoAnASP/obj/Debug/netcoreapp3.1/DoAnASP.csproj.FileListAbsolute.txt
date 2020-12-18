@@ -1054,3 +1054,6 @@ E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\scopedcss\bundle\
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs
 E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\ListFlims.cshtml.g.cs
+D:\GitLocal\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\ListFlims.cshtml.g.cs
+D:\GitLocal\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
+D:\GitLocal\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs

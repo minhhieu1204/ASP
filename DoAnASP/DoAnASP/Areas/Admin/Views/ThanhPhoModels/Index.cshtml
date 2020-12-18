@@ -9,9 +9,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+
                     <div class="table-responsive table-responsive-data2">
                         <h1>Thành Phố</h1>
-
                         <p>
                             <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">Create New</a>
                         </p>
@@ -33,12 +33,12 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id="@item.IdThanhPho" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a asp-action="Edit" asp-route-id="@item.IdThanhPho" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id="@item.IdThanhPho" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdThanhPho" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -51,3 +51,30 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cấp báo</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <p>Chào mừng đến trang quản lí thành phố .</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    @section Scripts{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#myModal').modal('show');
+            });
+        </script>
+
+    }
