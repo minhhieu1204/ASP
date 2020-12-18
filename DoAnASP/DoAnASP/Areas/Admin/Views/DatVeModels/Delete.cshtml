@@ -25,23 +25,29 @@
             @Html.DisplayFor(model => model.NgayDat)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tonggia)
+            @Html.DisplayNameFor(model => model.TongGia)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tonggia)
+            @Html.DisplayFor(model => model.TongGia)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.lichchieu)
+            @Html.DisplayNameFor(model => model.TrangThaiThanhToan)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.lichchieu.IdLichChieu)
+            @Html.DisplayFor(model => model.TrangThaiThanhToan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lichChieu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.lichChieu.IdLichChieu)
         </dd class>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Makhachhang)
+            @Html.DisplayNameFor(model => model.khachHang)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Makhachhang)
-        </dd>
+            @Html.DisplayFor(model => model.khachHang.DiaChi)
+        </dd class>
     </dl>
     
     <form asp-action="Delete">

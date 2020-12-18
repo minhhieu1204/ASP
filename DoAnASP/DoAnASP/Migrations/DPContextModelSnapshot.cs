@@ -32,8 +32,9 @@ namespace DoAnASP.Migrations
                     b.Property<int>("MaDatVe")
                         .HasColumnType("int");
 
-                    b.Property<int>("SoGhe")
-                        .HasColumnType("int");
+                    b.Property<string>("TenGhe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdChiTietDatVe");
 
@@ -49,10 +50,10 @@ namespace DoAnASP.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Makhachhang")
+                    b.Property<int>("MaKhachHang")
                         .HasColumnType("int");
 
-                    b.Property<int>("Malichchieu")
+                    b.Property<int>("MaLichChieu")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("NgayDat")
@@ -61,17 +62,17 @@ namespace DoAnASP.Migrations
                     b.Property<int>("SoGhe")
                         .HasColumnType("int");
 
-                    b.Property<double>("Tonggia")
+                    b.Property<double>("TongGia")
                         .HasColumnType("float");
 
-                    b.Property<int?>("UserIdUser")
-                        .HasColumnType("int");
+                    b.Property<bool>("TrangThaiThanhToan")
+                        .HasColumnType("bit");
 
                     b.HasKey("IdDatVe");
 
-                    b.HasIndex("Malichchieu");
+                    b.HasIndex("MaKhachHang");
 
-                    b.HasIndex("UserIdUser");
+                    b.HasIndex("MaLichChieu");
 
                     b.ToTable("datVeModels");
                 });
@@ -207,6 +208,9 @@ namespace DoAnASP.Migrations
                     b.Property<string>("HinhAnh")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<string>("LinkPhim")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaLoaiPhim")
                         .HasColumnType("int");
@@ -345,8 +349,8 @@ namespace DoAnASP.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("SDT")
                         .IsRequired()
@@ -365,7 +369,7 @@ namespace DoAnASP.Migrations
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.ChiTietDatVeModel", b =>
                 {
                     b.HasOne("DoAnASP.Areas.Admin.Models.DatVeModel", "datVe")
-                        .WithMany("lstChitietdatve")
+                        .WithMany("lstChiTietDatVe")
                         .HasForeignKey("MaDatVe")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -373,15 +377,17 @@ namespace DoAnASP.Migrations
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.DatVeModel", b =>
                 {
-                    b.HasOne("DoAnASP.Areas.Admin.Models.LichChieuModel", "lichchieu")
-                        .WithMany("lstDatVe")
-                        .HasForeignKey("Malichchieu")
+                    b.HasOne("DoAnASP.Areas.Admin.Models.UserModel", "khachHang")
+                        .WithMany()
+                        .HasForeignKey("MaKhachHang")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoAnASP.Areas.Admin.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserIdUser");
+                    b.HasOne("DoAnASP.Areas.Admin.Models.LichChieuModel", "lichChieu")
+                        .WithMany("lstDatVe")
+                        .HasForeignKey("MaLichChieu")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DoAnASP.Areas.Admin.Models.GheModel", b =>

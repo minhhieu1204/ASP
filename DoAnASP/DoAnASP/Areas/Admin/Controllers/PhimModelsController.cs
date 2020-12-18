@@ -22,12 +22,29 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        private string username = null;
         // GET: Admin/PhimModels
         public async Task<IActionResult> Index()
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("Username").ToString();
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username= us.SelectToken("IdUser").ToString();
+                    ViewBag.Username = username;
+                    
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
 
             var dPContext = _context.phimModels.Include(s=>s.loaiPhim);
             return View( await dPContext.ToListAsync());
@@ -36,8 +53,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("Username").ToString();
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -57,8 +73,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Create
         public IActionResult Create()
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("Username").ToString();
+            ViewBag.Username = username;
             ViewBag.TypeFilm = _context.loaiPhimModels.ToList();
             return View();
         }
@@ -164,8 +179,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-            ViewBag.Username = us.SelectToken("Username").ToString();
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoAnASP.Migrations
 {
-    public partial class db_chinh : Migration
+    public partial class i : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace DoAnASP.Migrations
                 {
                     table.PrimaryKey("PK_giamGiaModels", x => x.IdMaGiamGia);
                 });
-      
+
             migrationBuilder.CreateTable(
                 name: "loaiGheModels",
                 columns: table => new
@@ -67,7 +67,7 @@ namespace DoAnASP.Migrations
                     IdUser = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(maxLength: 25, nullable: false),
-                    Password = table.Column<string>(maxLength: 25, nullable: false),
+                    Password = table.Column<string>(maxLength: 100, nullable: false),
                     HoTen = table.Column<string>(maxLength: 50, nullable: false),
                     NgaySinh = table.Column<DateTime>(nullable: false),
                     GioiTinh = table.Column<bool>(nullable: false),
@@ -90,7 +90,7 @@ namespace DoAnASP.Migrations
                     ThoiLuong = table.Column<TimeSpan>(nullable: false),
                     HinhAnh = table.Column<string>(maxLength: 255, nullable: true),
                     Mota = table.Column<string>(nullable: true),
-                    LinkPhim= table.Column<string>(nullable: true),
+                    LinkPhim = table.Column<string>(nullable: true),
                     MaLoaiPhim = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -238,26 +238,26 @@ namespace DoAnASP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SoGhe = table.Column<int>(nullable: false),
                     NgayDat = table.Column<DateTime>(nullable: false),
-                    Tonggia = table.Column<double>(nullable: false),
-                    Malichchieu = table.Column<int>(nullable: false),
-                    Makhachhang = table.Column<int>(nullable: false),
-                    UserIdUser = table.Column<int>(nullable: true)
+                    TongGia = table.Column<double>(nullable: false),
+                    MaLichChieu = table.Column<int>(nullable: false),
+                    TrangThaiThanhToan = table.Column<bool>(nullable: false),
+                    MaKhachHang = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_datVeModels", x => x.IdDatVe);
                     table.ForeignKey(
-                        name: "FK_datVeModels_lichChieuModels_Malichchieu",
-                        column: x => x.Malichchieu,
+                        name: "FK_datVeModels_userModels_MaKhachHang",
+                        column: x => x.MaKhachHang,
+                        principalTable: "userModels",
+                        principalColumn: "IdUser",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_datVeModels_lichChieuModels_MaLichChieu",
+                        column: x => x.MaLichChieu,
                         principalTable: "lichChieuModels",
                         principalColumn: "IdLichChieu",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_datVeModels_userModels_UserIdUser",
-                        column: x => x.UserIdUser,
-                        principalTable: "userModels",
-                        principalColumn: "IdUser",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -266,7 +266,7 @@ namespace DoAnASP.Migrations
                 {
                     IdChiTietDatVe = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SoGhe = table.Column<int>(nullable: false),
+                    TenGhe = table.Column<string>(nullable: false),
                     GiaVe = table.Column<double>(nullable: false),
                     MaDatVe = table.Column<int>(nullable: false)
                 },
@@ -287,14 +287,14 @@ namespace DoAnASP.Migrations
                 column: "MaDatVe");
 
             migrationBuilder.CreateIndex(
-                name: "IX_datVeModels_Malichchieu",
+                name: "IX_datVeModels_MaKhachHang",
                 table: "datVeModels",
-                column: "Malichchieu");
+                column: "MaKhachHang");
 
             migrationBuilder.CreateIndex(
-                name: "IX_datVeModels_UserIdUser",
+                name: "IX_datVeModels_MaLichChieu",
                 table: "datVeModels",
-                column: "UserIdUser");
+                column: "MaLichChieu");
 
             migrationBuilder.CreateIndex(
                 name: "IX_gheModels_MaLoaiGhe",
@@ -357,10 +357,10 @@ namespace DoAnASP.Migrations
                 name: "loaiGheModels");
 
             migrationBuilder.DropTable(
-                name: "lichChieuModels");
+                name: "userModels");
 
             migrationBuilder.DropTable(
-                name: "userModels");
+                name: "lichChieuModels");
 
             migrationBuilder.DropTable(
                 name: "giamGiaModels");
