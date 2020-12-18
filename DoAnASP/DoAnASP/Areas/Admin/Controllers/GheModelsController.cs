@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -19,10 +21,29 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        private string username = null;
         // GET: Admin/GheModels
         public async Task<IActionResult> Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username = us.SelectToken("IdUser").ToString();
+                    ViewBag.Username = username;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
             var dPContext = _context.gheModels.Include(g => g.loaiGhe).Include(g => g.phong);
             return View(await dPContext.ToListAsync());
         }
@@ -50,6 +71,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/GheModels/Create
         public IActionResult Create()
         {
+            ViewBag.Username = username;
             ViewData["MaLoaiGhe"] = new SelectList(_context.loaiGheModels, "IdLoaiGhe", "TenLoaiGhe");
             ViewData["MaPhong"] = new SelectList(_context.phongModels, "IdPhong", "TenPhong");
             return View();
@@ -98,6 +120,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdGhe,TenGhe,TrangThai,MaLoaiGhe,MaPhong")] GheModel gheModel)
         {
+            ViewBag.Username = username;
             if (id != gheModel.IdGhe)
             {
                 return NotFound();
@@ -131,6 +154,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/GheModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -19,10 +21,29 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        private string username = null;
         // GET: Admin/ChiTietDatVeModels
         public async Task<IActionResult> Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username = us.SelectToken("IdUser").ToString();
+                    ViewBag.Username = username;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
             var dPContext = _context.chiTietDatVeModels.Include(c => c.datVe);
             return View(await dPContext.ToListAsync());
         }
@@ -30,6 +51,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/ChiTietDatVeModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -49,6 +71,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/ChiTietDatVeModels/Create
         public IActionResult Create()
         {
+            ViewBag.Username = username;
             ViewData["MaDatVe"] = new SelectList(_context.datVeModels, "IdDatVe", "IdDatVe");
             return View();
         }
@@ -58,7 +81,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdChiTietDatVe,SoGhe,GiaVe,MaDatVe")] ChiTietDatVeModel chiTietDatVeModel)
+        public async Task<IActionResult> Create([Bind("IdChiTietDatVe,TenGhe,GiaVe,MaDatVe")] ChiTietDatVeModel chiTietDatVeModel)
         {
             if (ModelState.IsValid)
             {
@@ -73,6 +96,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/ChiTietDatVeModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -92,7 +116,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdChiTietDatVe,SoGhe,GiaVe,MaDatVe")] ChiTietDatVeModel chiTietDatVeModel)
+        public async Task<IActionResult> Edit(int id, [Bind("IdChiTietDatVe,TenGhe,GiaVe,MaDatVe")] ChiTietDatVeModel chiTietDatVeModel)
         {
             if (id != chiTietDatVeModel.IdChiTietDatVe)
             {
@@ -126,6 +150,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/ChiTietDatVeModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();

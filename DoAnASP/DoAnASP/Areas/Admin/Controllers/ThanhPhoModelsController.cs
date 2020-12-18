@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -19,10 +21,29 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        private string username = null;
         // GET: Admin/ThanhPhoModels
         public async Task<IActionResult> Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username = us.SelectToken("IdUser").ToString();
+                    ViewBag.Username = username;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
             return View(await _context.thanhPhoModels.ToListAsync());
         }
 
@@ -47,6 +68,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/ThanhPhoModels/Create
         public IActionResult Create()
         {
+            ViewBag.Username = username;
             return View();
         }
 
@@ -69,6 +91,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/ThanhPhoModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -120,6 +143,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/ThanhPhoModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
