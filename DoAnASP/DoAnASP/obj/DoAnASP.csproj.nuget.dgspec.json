@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {}
+    "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {}
   },
   "projects": {
-    "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {
+    "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
         "projectName": "DoAnASP",
-        "projectPath": "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
-        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
-        "outputPath": "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\ASP\\DoAnASP\\DoAnASP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,7 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -81,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

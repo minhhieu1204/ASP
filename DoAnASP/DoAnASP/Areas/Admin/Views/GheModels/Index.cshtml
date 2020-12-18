@@ -51,12 +51,12 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id="@item.IdGhe" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a asp-action="Edit" asp-route-id="@item.IdGhe" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id="@item.IdGhe" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdGhe" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
