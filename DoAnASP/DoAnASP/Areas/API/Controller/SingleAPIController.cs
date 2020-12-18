@@ -76,6 +76,7 @@ namespace DoAnASP.Areas.API.Controller
                         c += item + ",";
                 }
                 string[] d = c.Split(",");
+                JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
                 if (d.Length > 0)
                 {
                     DatVeModel datVeModel = new DatVeModel();
@@ -84,7 +85,7 @@ namespace DoAnASP.Areas.API.Controller
                     datVeModel.TongGia = int.Parse(tongGia);
                     datVeModel.MaLichChieu = int.Parse(idLichChieu);
                     datVeModel.TrangThaiThanhToan = true;
-                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                   
 
                     datVeModel.MaKhachHang = int.Parse( us.SelectToken("IdUser").ToString()); 
                     _context.Add(datVeModel);
@@ -92,7 +93,7 @@ namespace DoAnASP.Areas.API.Controller
                 }
                 var datVeHienTai = from s in _context.datVeModels
                                    where s.MaLichChieu == int.Parse(idLichChieu) && s.TongGia == int.Parse(tongGia) &&
-                                   s.MaKhachHang == 1 && s.SoGhe == (d.Length - 1)
+                                   s.MaKhachHang == int.Parse(us.SelectToken("IdUser").ToString()) && s.SoGhe == (d.Length - 1)
                                    select new
                                    {
                                        s.IdDatVe
