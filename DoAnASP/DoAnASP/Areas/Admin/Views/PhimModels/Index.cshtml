@@ -8,18 +8,24 @@
 
 
 <div class="main-content">
-
     <div class="section__content section__content--p30">
 
         <div class="container-fluid">
-
             <div class="row">
-                <div class="form-header">
+                <div class="form-header col-sm-5">
                     <input class="au-input au-input--xl" type="text" name="keyword" id="keyword" placeholder="Search for datas &amp; reports..." />
                     <button class="au-btn--submit" id="btn_search">
                         <i class="zmdi zmdi-search"></i>
                     </button>
                 </div>
+                <div class="form-header col-sm-5">
+                    <h4 class="col-4">Thông Báo User:</h4><br />
+                    <input class="au-input au-input--xl" type="text" name="comment" id="comment" title="Thông báo cho người dùng"  placeholder="Notifications User....." />
+                    <button class="au-btn--submit" id="clientbutton">
+                        <i class="zmdi zmdi-notifications-add"></i>
+                    </button>
+                </div>
+                <br />
                 <div class="col-md-12">
                     <div class="table-responsive table-responsive-data2">
                         <h1>Phim</h1>
@@ -71,13 +77,15 @@
 
                         </table>
                         <br />
-                       
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
 @section Scripts{
     <script>
         $(document).ready(function () {
@@ -91,33 +99,33 @@
                     var i = '';
                     $.each(cc, function (index, value) {
                         i += ` <tr class="tr-shadow">
-                                                    <td>`+
+                                                                <td>`+
                             value.TenPhim
                             +
                             `
-                                                    </td>
-                                                    <td>`+
+                                                                </td>
+                                                                <td>`+
                             value.ThoiLuong
                             + `
-                                                    </td>
-                                                    <td><img src="/ImageAdmin/ImgPhim/`+ value.HinhAnh +`" style="width:100px; height:100px;" />
-                                                    </td>
-                                                    <td>
-                                                      `+
+                                                                </td>
+                                                                <td><img src="/ImageAdmin/ImgPhim/`+ value.HinhAnh + `" style="width:100px; height:100px;" />
+                                                                </td>
+                                                                <td>
+                                                                  `+
                             value.TenLoaiPhim
                             + `
-                                                    </td>
-                                                    <td>
-                                                        <div class="table-data-feature">
-                                                            <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="zmdi zmdi-edit"></i>
-                                                            </button>
-                                                            <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                <i class="zmdi zmdi-delete"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>`;
+                                                                </td>
+                                                                <td>
+                                                                    <div class="table-data-feature">
+                                                                        <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                            <i class="zmdi zmdi-edit"></i>
+                                                                        </button>
+                                                                        <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                            <i class="zmdi zmdi-delete"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>`;
                     });
                     $('tbody').html(i)
                 });
@@ -125,4 +133,30 @@
         });
     </script>
 
+    <script>
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/Notifications").build();
+        connection.start().then(function () {
+
+        }).catch(function (err) {
+            return console.error.toString();
+        });
+        connection.on("ClientSideFunction", function (message) {
+            $('#ProductDescription').text(message);
+        });
+        $('#clientbutton').click(function (envent) {
+            let message = $('#comment').val();
+            $.ajax({
+                url: '../../Admin/PhimModels/updateMessage',
+                type: 'GET',
+                data: { 'message': message }
+            }).done(function () {
+                $('#comment').empty();
+                connection.invoke("NotificationClient").catch(function (err) {
+                    return console.error.toString();
+                });
+                envent.preventDefault();
+            });
+        });
+    </script>
 }

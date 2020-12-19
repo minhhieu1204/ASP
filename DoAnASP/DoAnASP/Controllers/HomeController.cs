@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
 using DoAnASP.Commont;
+using DoAnASP.Hubs;
 using DoAnASP.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,10 @@ namespace DoAnASP.Controllers
             _context = context;
         }
 
-
+        public void updateMessage(string message)
+        {
+            NotificationHubs.messagesss = message;
+        }
         public async Task<IActionResult> Index()
         {
             ViewBag.PhimCuoi = _context.phimModels;
@@ -41,7 +45,7 @@ namespace DoAnASP.Controllers
                 else
                 {
                     JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-                    ViewBag.Username = us.SelectToken("IdUser").ToString();
+                    ViewBag.Username = us.SelectToken("Username").ToString();
                 }
             }
             catch (Exception e)
