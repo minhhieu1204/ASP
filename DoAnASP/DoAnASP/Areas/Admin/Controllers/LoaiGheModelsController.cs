@@ -35,7 +35,7 @@ namespace DoAnASP.Areas.Admin.Controllers
                 else
                 {
                     JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-                    username = us.SelectToken("IdUser").ToString();
+                    username = us.SelectToken("Username").ToString();
                     ViewBag.Username = username;
 
                 }
