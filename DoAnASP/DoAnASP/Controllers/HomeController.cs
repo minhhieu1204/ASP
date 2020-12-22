@@ -38,14 +38,14 @@ namespace DoAnASP.Controllers
             ViewBag.PhimCuoi = _context.phimModels;
             try
             {
-                if (HttpContext.Session.GetString("User").ToString() == null)
+                if (HttpContext.Session.GetString("Userthuong").ToString() == null)
                 {
                     HttpContext.Session.SetString("User", "Chưa đăng nhập");
                 }
                 else
                 {
-                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-                    ViewBag.Username = us.SelectToken("Username").ToString();
+
+                    ViewBag.Username = HttpContext.Session.GetString("Userthuong").ToString();
                 }
             }
             catch (Exception e)
@@ -59,6 +59,10 @@ namespace DoAnASP.Controllers
             return View(await dPContext.ToListAsync());
         }
         public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Register()
         {
             return View();
         }
@@ -77,16 +81,40 @@ namespace DoAnASP.Controllers
               return  RedirectToAction("Login", "Home");
             }
             var str = JsonConvert.SerializeObject(r);
-            HttpContext.Session.SetString("User", str);
+            if (userModel.Username == null) {
+                HttpContext.Session.SetString("Userthuong","");
+            }
+            else
+            {
+                HttpContext.Session.SetString("Userthuong", userModel.Username);
+            }
+
             i++;
             if (r.LoaiTaiKhoan == true)
             {
+                HttpContext.Session.SetString("User", str);
                 var url = Url.RouteUrl(new { controller = "PhimModels", action = "Index", area = "Admin" });
                 return Redirect(url);
             }
             return RedirectToAction("Index", "Home");
         }
-      
-      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([Bind("IdUser,Username,Password,HoTen,NgaySinh,GioiTinh,DiaChi,SDT,LoaiTaiKhoan")] UserModel userModel)
+        {
+                userModel.Password = StringProcess.CreateMD5Hash(userModel.Password).ToString();
+                _context.Add(userModel);
+                await _context.SaveChangesAsync();
+            if (userModel.Username == null)
+            {
+                HttpContext.Session.SetString("Userthuong", "");
+            }
+            else
+            {
+                HttpContext.Session.SetString("Userthuong", userModel.Username);
+            }
+            return RedirectToAction(nameof(Index));
+           
+        }
     }
 }
