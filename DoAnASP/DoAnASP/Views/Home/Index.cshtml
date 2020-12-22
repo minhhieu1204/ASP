@@ -125,15 +125,34 @@
 
     </div>
 </div>
+<div id="mymodal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content" style="background-color:#dd6b69;">
+            <div class="modal-header">
+                <h4 class="modal-title">Thông Báo</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="ProductDescription"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+
 @section Scripts{
 
     <script>
         let i = 0;
-        if (i == 0) 
-         { 
-            $(document).ready(function() {
+        if (i == 0) {
+            $(document).ready(function () {
                 $('#myModal').modal('show');
-                });
+            });
         }
         i++;
     </script>
@@ -181,6 +200,18 @@
         });
     </script>
     <script type="text/javascript" src="~/template//js/jquery.flexisel.js"></script>
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/Notifications").build();
+        connection.start().then(function () {
+
+        }).catch(function (err) {
+            return console.error.toString();
+        });
+        connection.on("ClientSideFunction", function (message) {
+            $('#ProductDescription').text(message);
+            $('#mymodal').modal('show');
+        });
+    </script>
 
 }
 

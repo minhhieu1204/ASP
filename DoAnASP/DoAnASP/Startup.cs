@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DoAnASP.Areas.Admin.Data;
+using DoAnASP.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,7 @@ namespace DoAnASP
                 option.Cookie.HttpOnly = true;
                 option.Cookie.IsEssential = true;
             });
+            services.AddSignalR();
             services.AddDbContext<DPContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DPContext")));
         }
 
@@ -66,6 +68,10 @@ namespace DoAnASP
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Login}/{id?}");
+            });
+            app.UseSignalR(enpoints =>
+            {
+                enpoints.MapHub<NotificationHubs>("/Notifications");
             });
         }
     }

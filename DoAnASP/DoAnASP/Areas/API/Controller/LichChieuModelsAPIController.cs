@@ -46,7 +46,7 @@ namespace DoAnASP.Areas.API.Controller
                                 s.TenPhong,
                                 k.GioBatDau,
                                 Soluong=s.lstGhe.Count
-                               
+
                             };
             return JsonConvert.SerializeObject(dscombine);
         }

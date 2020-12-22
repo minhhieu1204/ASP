@@ -4,54 +4,55 @@
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h1>Create</h1>
 
-<h1>Create</h1>
-
-<h4>DatVeModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="SoGhe" class="control-label"></label>
-                <input asp-for="SoGhe" class="form-control" />
-                <span asp-validation-for="SoGhe" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NgayDat" class="control-label"></label>
-                <input asp-for="NgayDat" class="form-control" />
-                <span asp-validation-for="NgayDat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TongGia" class="control-label"></label>
-                <input asp-for="TongGia" class="form-control" />
-                <span asp-validation-for="TongGia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaLichChieu" class="control-label"></label>
-                <select asp-for="MaLichChieu" class ="form-control" asp-items="ViewBag.MaLichChieu"></select>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="TrangThaiThanhToan" /> @Html.DisplayNameFor(model => model.TrangThaiThanhToan)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaKhachHang" class="control-label"></label>
-                <select asp-for="MaKhachHang" class ="form-control" asp-items="ViewBag.MaKhachHang"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4>DatVeModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="SoGhe" class="control-label"></label>
+                    <input asp-for="SoGhe" class="form-control" />
+                    <span asp-validation-for="SoGhe" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NgayDat" class="control-label"></label>
+                    <input asp-for="NgayDat" class="form-control" />
+                    <span asp-validation-for="NgayDat" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TongGia" class="control-label"></label>
+                    <input asp-for="TongGia" class="form-control" />
+                    <span asp-validation-for="TongGia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaLichChieu" class="control-label"></label>
+                    <select asp-for="MaLichChieu" class="form-control" asp-items="ViewBag.MaLichChieu"></select>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="TrangThaiThanhToan" /> @Html.DisplayNameFor(model => model.TrangThaiThanhToan)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaKhachHang" class="control-label"></label>
+                    <select asp-for="MaKhachHang" class="form-control" asp-items="ViewBag.MaKhachHang"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>

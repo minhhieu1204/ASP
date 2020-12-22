@@ -10,6 +10,7 @@ using DoAnASP.Areas.Admin.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using DoAnASP.Hubs;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -22,10 +23,15 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
+        public void updateMessage(string message)
+        {
+            NotificationHubs.messagesss = message;
+        }
         private string username = null;
         // GET: Admin/PhimModels
         public async Task<IActionResult> Index()
         {
+            var dPContext = _context.phimModels.Include(s => s.loaiPhim);
             try
             {
                 if (HttpContext.Session.GetString("User").ToString() == null)
@@ -34,10 +40,14 @@ namespace DoAnASP.Areas.Admin.Controllers
                 }
                 else
                 {
+
                     JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
-                    username= us.SelectToken("IdUser").ToString();
-                    ViewBag.Username = username;
-                    
+                    if (bool.Parse(us.SelectToken("LoaiTaiKhoan").ToString()) == true)
+                    {
+                        username = us.SelectToken("Username").ToString();
+                        ViewBag.Username = username;
+                        return View(await dPContext.ToListAsync());
+                    }  
                 }
             }
             catch (Exception e)
@@ -45,9 +55,8 @@ namespace DoAnASP.Areas.Admin.Controllers
 
                 throw new Exception("Chưa Đăng nhập");
             }
-
-            var dPContext = _context.phimModels.Include(s=>s.loaiPhim);
-            return View( await dPContext.ToListAsync());
+            var url = Url.RouteUrl(new { area = "", action = "Index", controller = "Home" });
+            return Redirect(url);
         }
 
         // GET: Admin/PhimModels/Details/5
