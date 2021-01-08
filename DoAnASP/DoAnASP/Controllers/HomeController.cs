@@ -38,13 +38,13 @@ namespace DoAnASP.Controllers
             ViewBag.PhimCuoi = _context.phimModels;
             try
             {
-                if (HttpContext.Session.GetString("User").ToString() == null)
+                if (HttpContext.Session.GetString("UserThuong").ToString() == null)
                 {
-                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                    HttpContext.Session.SetString("UserThuong", "Chưa đăng nhập");
                 }
                 else
                 {
-                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("UserThuong"));
                     ViewBag.Username = us.SelectToken("Username").ToString();
                 }
             }
@@ -77,13 +77,15 @@ namespace DoAnASP.Controllers
               return  RedirectToAction("Login", "Home");
             }
             var str = JsonConvert.SerializeObject(r);
-            HttpContext.Session.SetString("User", str);
+           
             i++;
             if (r.LoaiTaiKhoan == true)
             {
+                HttpContext.Session.SetString("User", str);
                 var url = Url.RouteUrl(new { controller = "PhimModels", action = "Index", area = "Admin" });
                 return Redirect(url);
             }
+            HttpContext.Session.SetString("UserThuong", str);
             return RedirectToAction("Index", "Home");
         }
       
