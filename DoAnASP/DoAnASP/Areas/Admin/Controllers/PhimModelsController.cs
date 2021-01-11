@@ -11,12 +11,14 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using DoAnASP.Hubs;
+using Newtonsoft.Json;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class PhimModelsController : Controller
     {
+        private static int Count=0;
         private readonly DPContext _context;
 
         public PhimModelsController(DPContext context)
@@ -31,8 +33,34 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels
         public async Task<IActionResult> Index()
         {
-            var dPContext = _context.phimModels.Include(s => s.loaiPhim);
-            try
+            var pageCount = _context.phimModels;
+            ViewBag.PageCount = Math.Ceiling((decimal)pageCount.Count() / 5);
+            /* if (id == null)
+             {
+                 id = 1;
+             }
+             if (id == 100)
+             {
+                 if (Count<ViewBag.PageCount)
+                 {
+                     id = Count + 1;
+                 }else
+                 {
+                     id = (int)ViewBag.PageCount;
+                 }
+             }
+             if (id == 99)
+             {
+                 if (Count>= 2)
+                 {
+                     id = Count - 1;
+                 }else
+                 {
+                     id = 1;
+                 }
+             }*/
+            var dPContext = _context.phimModels.Include(s => s.loaiPhim).Take(5);
+        /*    try
             {
                 if (HttpContext.Session.GetString("User").ToString() == null)
                 {
@@ -45,20 +73,57 @@ namespace DoAnASP.Areas.Admin.Controllers
                     if (bool.Parse(us.SelectToken("LoaiTaiKhoan").ToString()) == true)
                     {
                         username = us.SelectToken("Username").ToString();
-                        ViewBag.Username = username;
+                        ViewBag.Username = username;*/
                         return View(await dPContext.ToListAsync());
-                    }  
+           /*         }
                 }
             }
             catch (Exception e)
             {
-
                 throw new Exception("Chưa Đăng nhập");
             }
             var url = Url.RouteUrl(new { area = "", action = "Index", controller = "Home" });
-            return Redirect(url);
+            return Redirect(url);*/
         }
-
+      public string PhanPage(int page)
+        {
+            var pageCount = _context.phimModels;
+            ViewBag.PageCount = Math.Ceiling((decimal)pageCount.Count() / 5);
+            if (page == 100)
+            {
+                if (Count < ViewBag.PageCount)
+                {
+                    page = Count + 1;
+                }
+                else
+                {
+                    page = (int)ViewBag.PageCount;
+                }
+            }
+            if (page == 99)
+            {
+                if (Count >= 2)
+                {
+                    page = Count - 1;
+                }
+                else
+                {
+                    page = 1;
+                }
+            }
+            var data = (from db in _context.phimModels
+                       select new
+                       {
+                           db.IdPhim,
+                           db.TenPhim,
+                           db.ThoiLuong,
+                           db.HinhAnh,
+                           db.LinkPhim,
+                           db.loaiPhim.TenLoaiPhim
+                       }).Skip((page - 1) * 5).Take(5);
+            Count = page;
+            return JsonConvert.SerializeObject(data);
+        }
         // GET: Admin/PhimModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -86,7 +151,6 @@ namespace DoAnASP.Areas.Admin.Controllers
             ViewBag.TypeFilm = _context.loaiPhimModels.ToList();
             return View();
         }
-
         // POST: Admin/PhimModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

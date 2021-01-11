@@ -39,6 +39,7 @@ namespace DoAnASP.Areas.API.Controller
                            db.TenPhim,
                            db.ThoiLuong,
                            db.HinhAnh,
+                           db.LinkPhim,
                            db.loaiPhim.TenLoaiPhim
                        };
             return JsonConvert.SerializeObject(data);

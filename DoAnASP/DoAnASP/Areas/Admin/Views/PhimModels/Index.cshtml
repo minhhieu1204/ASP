@@ -1,7 +1,6 @@
 ﻿
 @model IEnumerable<DoAnASP.Areas.Admin.Models.PhimModel>
 
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -20,7 +19,7 @@
                 </div>
                 <div class="form-header col-sm-5">
                     <h4 class="col-4">Thông Báo User:</h4><br />
-                    <input class="au-input au-input--xl" type="text" name="comment" id="comment" title="Thông báo cho người dùng"  placeholder="Notifications User....." />
+                    <input class="au-input au-input--xl" type="text" name="comment" id="comment" title="Thông báo cho người dùng" placeholder="Notifications User....." />
                     <button class="au-btn--submit" id="clientbutton">
                         <i class="zmdi zmdi-notifications-add"></i>
                     </button>
@@ -77,16 +76,40 @@
 
                         </table>
                         <br />
+                        <br />
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link"  href="#" onclick="showPage(99)" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                @for (int i = 1; i <= ViewBag.PageCount; i++)
+                                {
+                                        <li class="page-item" onclick="showPage(@i)"><a class="page-link " href="#" >@i</a></li>
+                                }
+                                <li class="page-item">
+                                    <a class="page-link"  href="#" onclick="showPage(100)" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
-<script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+
 @section Scripts{
+    <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+   
     <script>
         $(document).ready(function () {
             $("#btn_search").click(function () {
@@ -98,34 +121,20 @@
                     var cc = JSON.parse(data);
                     var i = '';
                     $.each(cc, function (index, value) {
-                        i += ` <tr class="tr-shadow">
-                                                                <td>`+
-                            value.TenPhim
-                            +
-                            `
-                                                                </td>
-                                                                <td>`+
-                            value.ThoiLuong
-                            + `
-                                                                </td>
-                                                                <td><img src="/ImageAdmin/ImgPhim/`+ value.HinhAnh + `" style="width:100px; height:100px;" />
-                                                                </td>
-                                                                <td>
-                                                                  `+
-                            value.TenLoaiPhim
-                            + `
-                                                                </td>
-                                                                <td>
-                                                                    <div class="table-data-feature">
-                                                                        <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                            <i class="zmdi zmdi-edit"></i>
-                                                                        </button>
-                                                                        <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                            <i class="zmdi zmdi-delete"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>`;
+                        i += ` <tr class="tr-shadow"><td>`+value.TenPhim+
+                            `</td><td>`+value.ThoiLuong+ `</td><td><img src="/ImageAdmin/ImgPhim/`+ value.HinhAnh + `" style="width:100px; height:100px;" />
+                            </td><td>`+ value.TenLoaiPhim + ` </td>
+                             </td><td>`+ value.LinkPhim + ` </td>
+                             <td><div class="table-data-feature">
+                                <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>`;
                     });
                     $('tbody').html(i)
                 });
@@ -158,5 +167,34 @@
                 envent.preventDefault();
             });
         });
+    </script>
+    <script>
+        function showPage(id) {
+            $.ajax({
+                type: "GET",
+                data: { 'page': id },
+                url: '../../Admin/PhimModels/PhanPage'
+            }).done(function (respone) {
+                var a = JSON.parse(respone);
+                var i = '';
+                $.each(a, function (index, value) {
+                    i += ` <tr class="tr-shadow"><td>` + value.TenPhim +
+                        `</td><td>` + value.ThoiLuong + `</td><td><img src="/ImageAdmin/ImgPhim/` + value.HinhAnh + `" style="width:100px; height:100px;" />
+                            </td><td>`+ value.TenLoaiPhim + ` </td>
+                             </td><td>`+ value.LinkPhim + ` </td>
+                             <td><div class="table-data-feature">
+                                <a href="PhimModels/Edit/`+ value.IdPhim + `" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </a>
+                                <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>`;
+                });
+                $('tbody').html(i)
+               });
+             }
     </script>
 }

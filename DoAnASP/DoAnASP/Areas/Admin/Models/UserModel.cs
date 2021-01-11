@@ -28,6 +28,7 @@ namespace DoAnASP.Areas.Admin.Models
         public string DiaChi { get; set; }
         [Phone(ErrorMessage = "Sai Format Phone Number!")]
         [Required(ErrorMessage = "Please enter  value Phone!")]
+        [RegularExpression("0\\d{9}", ErrorMessage ="Số điện thoại phải bắt đầu từ 0 và chỉ 9 số")]
         public string SDT { get; set; }
 
         [DefaultValue(true)]
