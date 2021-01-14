@@ -37,6 +37,7 @@ namespace DoAnASP
             });
             services.AddSignalR();
             services.AddDbContext<DPContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DPContext")));
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

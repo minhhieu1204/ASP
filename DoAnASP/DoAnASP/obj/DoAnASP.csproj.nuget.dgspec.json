@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitLocal\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {}
+    "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {}
   },
   "projects": {
-    "D:\\GitLocal\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {
+    "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitLocal\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+        "projectUniqueName": "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
         "projectName": "DoAnASP",
-        "projectPath": "D:\\GitLocal\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\GitLocal\\ASP\\DoAnASP\\DoAnASP\\obj\\",
+        "projectPath": "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+        "packagesPath": "C:\\Users\\Minh Hieu\\.nuget\\packages\\",
+        "outputPath": "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Minh Hieu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,10 +22,12 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://pkgs.dev.azure.com/Hieuminhngo3/_packaging/Hieuminhngo3/nuget/v3/index.json": {},
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -40,6 +39,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -82,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
