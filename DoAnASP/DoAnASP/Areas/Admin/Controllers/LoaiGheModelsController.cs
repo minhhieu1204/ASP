@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -19,16 +21,38 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        private string username = null;
         // GET: Admin/LoaiGheModels
         public async Task<IActionResult> Index()
         {
+
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username = us.SelectToken("Username").ToString();
+                    ViewBag.Username = username;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
             return View(await _context.loaiGheModels.ToListAsync());
         }
 
         // GET: Admin/LoaiGheModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();
@@ -47,6 +71,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/LoaiGheModels/Create
         public IActionResult Create()
         {
+            ViewBag.Username = username;
             return View();
         }
 
@@ -69,6 +94,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/LoaiGheModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -120,6 +146,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/LoaiGheModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -142,6 +169,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             var loaiGheModel = await _context.loaiGheModels.FindAsync(id);
             _context.loaiGheModels.Remove(loaiGheModel);
+            HttpContext.Session.Remove("User");
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

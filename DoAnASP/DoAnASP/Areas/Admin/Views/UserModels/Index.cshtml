@@ -53,7 +53,7 @@
                                             @Html.DisplayFor(modelItem => item.Username)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Password)
+                                            <textarea  style="height:60px; background-color:white;" disabled>@Html.DisplayFor(modelItem => item.Password)</textarea>
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.HoTen)
@@ -75,12 +75,12 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id="@item.IdUser" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a asp-action="Edit" asp-route-id="@item.IdUser" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id="@item.IdUser" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdUser" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

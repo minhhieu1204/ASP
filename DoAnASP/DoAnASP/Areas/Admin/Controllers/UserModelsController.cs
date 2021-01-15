@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -19,16 +21,37 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        private string username = null;
         // GET: Admin/UserModels
         public async Task<IActionResult> Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username = us.SelectToken("Username").ToString();
+                    ViewBag.Username = username;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
             return View(await _context.userModels.ToListAsync());
         }
 
         // GET: Admin/UserModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();
@@ -47,6 +70,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/UserModels/Create
         public IActionResult Create()
         {
+            ViewBag.Username = username;
             return View();
         }
 
@@ -59,6 +83,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                userModel.Password = StringProcess.CreateMD5Hash(userModel.Password).ToString();
                 _context.Add(userModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -69,6 +94,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/UserModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -120,6 +146,9 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/UserModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Username = username;
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();

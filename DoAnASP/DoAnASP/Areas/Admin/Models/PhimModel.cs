@@ -19,16 +19,16 @@ namespace DoAnASP.Areas.Admin.Models
         [Required]
         public TimeSpan ThoiLuong { get; set; }
 
-        
+        [Required]
         [StringLength(255)]
         
         public string HinhAnh { get; set; }
+        [Required]
         public string Mota { get; set; }
-
+        [Required]
+        public string LinkPhim { get; set; }
         public int MaLoaiPhim { get; set; }
-
         [ForeignKey("MaLoaiPhim")]
-
         public virtual LoaiPhimModel loaiPhim { get; set; }
 
         public ICollection<LichChieuModel> lstLichChieu { get; set; }

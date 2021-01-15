@@ -2,65 +2,55 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h1>Details</h1>
 
-<h1>Details</h1>
-
-<div>
-    <h4>DatVeModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GioiTinh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GioiTinh)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LoaiTaiKhoan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LoaiTaiKhoan)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.IdUser">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <h4>DatVeModel</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SoGhe)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SoGhe)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NgayDat)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NgayDat)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TongGia)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TongGia)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TrangThaiThanhToan)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TrangThaiThanhToan)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.lichChieu)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.lichChieu.IdLichChieu)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.khachHang)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.khachHang.DiaChi)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.IdDatVe">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+    </div>
