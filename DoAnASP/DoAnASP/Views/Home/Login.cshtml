@@ -30,31 +30,14 @@
                     <div class="field-group">
                         <span class="fa fa-user" aria-hidden="true"></span>
                         <div class="wthree-field">
-                            <input asp-for="Username" id="text1" type="text" value="@Context.Request.Cookies["username"]" placeholder="Username" required>
+                            <input asp-for="Username" id="text1" type="text" value="" placeholder="Username" required>
                         </div>
                     </div>
                     <div class="field-group">
                         <span class="fa fa-lock" aria-hidden="true"></span>
                         <div class="wthree-field">
-                            <input asp-for="Password" id="myInput" type="Password" value="@Context.Request.Cookies["password"]" placeholder="Password" required>
+                            <input asp-for="Password" id="myInput" type="Password" placeholder="Password" required>
                         </div>
-                    </div>
-                    <div class="form-group form-check">
-                        <label class="form-check-label" style="color:white">
-                            @{
-                                var cookieValue = @Context.Request.Cookies["username"];
-                                if (cookieValue!=null)
-                                {
-                                    <input class="form-check-input" type="checkbox" name="remember" value="1" checked>
-                                }
-                                else
-                                {
-                                    <input class="form-check-input" type="checkbox" name="remember" value="1">
-                                }
-
-                            }
-                            Remember me
-                        </label>
                     </div>
                     <div class="wthree-field">
                         <button type="submit" class="btn btn-primary">Get Started</button>

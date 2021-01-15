@@ -33,34 +33,12 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels
         public async Task<IActionResult> Index()
         {
+
             var pageCount = _context.phimModels;
             ViewBag.PageCount = Math.Ceiling((decimal)pageCount.Count() / 5);
-            /* if (id == null)
-             {
-                 id = 1;
-             }
-             if (id == 100)
-             {
-                 if (Count<ViewBag.PageCount)
-                 {
-                     id = Count + 1;
-                 }else
-                 {
-                     id = (int)ViewBag.PageCount;
-                 }
-             }
-             if (id == 99)
-             {
-                 if (Count>= 2)
-                 {
-                     id = Count - 1;
-                 }else
-                 {
-                     id = 1;
-                 }
-             }*/
+           
             var dPContext = _context.phimModels.Include(s => s.loaiPhim).Take(5);
-        /*    try
+            try
             {
                 if (HttpContext.Session.GetString("User").ToString() == null)
                 {
@@ -73,9 +51,9 @@ namespace DoAnASP.Areas.Admin.Controllers
                     if (bool.Parse(us.SelectToken("LoaiTaiKhoan").ToString()) == true)
                     {
                         username = us.SelectToken("Username").ToString();
-                        ViewBag.Username = username;*/
+                        ViewBag.Username = username;
                         return View(await dPContext.ToListAsync());
-           /*         }
+                    }
                 }
             }
             catch (Exception e)
@@ -83,7 +61,7 @@ namespace DoAnASP.Areas.Admin.Controllers
                 throw new Exception("Chưa Đăng nhập");
             }
             var url = Url.RouteUrl(new { area = "", action = "Index", controller = "Home" });
-            return Redirect(url);*/
+            return Redirect(url);
         }
       public string PhanPage(int page)
         {

@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {}
+    "E:\\HK5\\Web ASP.Net\\ASP\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {}
   },
   "projects": {
-    "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {
+    "E:\\HK5\\Web ASP.Net\\ASP\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+        "projectUniqueName": "E:\\HK5\\Web ASP.Net\\ASP\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
         "projectName": "DoAnASP",
-        "projectPath": "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
-        "packagesPath": "C:\\Users\\Minh Hieu\\.nuget\\packages\\",
-        "outputPath": "F:\\GITHUB\\ASP\\DoAnASP\\DoAnASP\\obj\\",
+        "projectPath": "E:\\HK5\\Web ASP.Net\\ASP\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+        "outputPath": "E:\\HK5\\Web ASP.Net\\ASP\\ASP\\DoAnASP\\DoAnASP\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Minh Hieu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,8 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://pkgs.dev.azure.com/Hieuminhngo3/_packaging/Hieuminhngo3/nuget/v3/index.json": {},
-          "https://www.nuget.org/api/v2/": {}
+          "http://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {

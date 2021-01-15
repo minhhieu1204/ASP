@@ -314,12 +314,12 @@
             function chooseLich(id) {
                 var date = new Date();
                 if (id == 2) {
-                    $('#ngaychieu').html("Ngày Chiếu: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
+                    $('#ngaychieu').html("Ngày Chiếu: " + date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear());
                     showLich(date.getDate());
                 } else {
                     if (id == 3) {
                         var ngaycong = date.getDate() + 1
-                        $('#ngaychieu').html("Ngày Chiếu: " + ngaycong + "/" + date.getMonth() + "/" + date.getFullYear());
+                        $('#ngaychieu').html("Ngày Chiếu: " + ngaycong + "/" + (date.getMonth()+1) + "/" + date.getFullYear());
                         showLich(ngaycong);
                     } else { alert("Rạp hiện chưa có phim chiếu");}
                 }

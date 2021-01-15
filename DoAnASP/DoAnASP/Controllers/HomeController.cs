@@ -62,6 +62,15 @@ namespace DoAnASP.Controllers
         {
             return View();
         }
+        public IActionResult Register()
+        {
+            return View();
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("User");
+            return Redirect("Login");
+        }
         public async  Task<IActionResult> ListFlims()
         {
             var dPContext = _context.phimModels.Include(p => p.loaiPhim);
@@ -69,31 +78,22 @@ namespace DoAnASP.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login( int remember, UserModel userModel)
+        public IActionResult Login(UserModel userModel)
         {
-
-            if(remember==1)
-            {
-                CookieOptions cookieOptions = new CookieOptions();
-                cookieOptions.Expires = DateTime.Now.AddDays(7);
-                Response.Cookies.Append("username", userModel.Username,cookieOptions);
-                Response.Cookies.Append("password", userModel.Password,cookieOptions);
-            }
-            else 
-            {
-                CookieOptions cookieOptions = new CookieOptions();
-                cookieOptions.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Append("username","", cookieOptions);
-                Response.Cookies.Append("password","", cookieOptions);
-            }
-
             var r = _context.userModels.FirstOrDefault(m => m.Username == userModel.Username && m.Password == StringProcess.CreateMD5Hash(userModel.Password));
             if (r==null)
             {
               return  RedirectToAction("Login", "Home");
             }
             var str = JsonConvert.SerializeObject(r);
-           
+            if (userModel.Username == null) {
+                HttpContext.Session.SetString("Userthuong","");
+            }
+            else
+            {
+                HttpContext.Session.SetString("Userthuong", userModel.Username);
+            }
+
             i++;
             if (r.LoaiTaiKhoan == true)
             {
@@ -103,6 +103,24 @@ namespace DoAnASP.Controllers
             }
             HttpContext.Session.SetString("UserThuong", str);
             return RedirectToAction("Index", "Home");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([Bind("IdUser,Username,Password,HoTen,NgaySinh,GioiTinh,DiaChi,SDT,LoaiTaiKhoan")] UserModel userModel)
+        {
+                userModel.Password = StringProcess.CreateMD5Hash(userModel.Password).ToString();
+                _context.Add(userModel);
+                await _context.SaveChangesAsync();
+            if (userModel.Username == null)
+            {
+                HttpContext.Session.SetString("Userthuong", "");
+            }
+            else
+            {
+                HttpContext.Session.SetString("Userthuong", userModel.Username);
+            }
+            return RedirectToAction(nameof(Index));
+           
         }
     }
 }
