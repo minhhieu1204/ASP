@@ -78,8 +78,23 @@ namespace DoAnASP.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(UserModel userModel)
+        public IActionResult Login(int remember, UserModel userModel)
         {
+            if (remember == 1)
+            {
+                CookieOptions cookieOptions = new CookieOptions();
+                cookieOptions.Expires = DateTime.Now.AddDays(7);
+                Response.Cookies.Append("username", userModel.Username, cookieOptions);
+                Response.Cookies.Append("password", userModel.Password, cookieOptions);
+            }
+            else
+            {
+                CookieOptions cookieOptions = new CookieOptions();
+                cookieOptions.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Append("username", "", cookieOptions);
+                Response.Cookies.Append("password", "", cookieOptions);
+            }
+
             var r = _context.userModels.FirstOrDefault(m => m.Username == userModel.Username && m.Password == StringProcess.CreateMD5Hash(userModel.Password));
             if (r==null)
             {

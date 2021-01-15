@@ -1566,3 +1566,8 @@ E:\HK5\Web ASP.Net\ASP\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.cspro
 E:\HK5\Web ASP.Net\ASP\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.dll
 E:\HK5\Web ASP.Net\ASP\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.pdb
 E:\HK5\Web ASP.Net\ASP\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.genruntimeconfig.cache
+F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\scopedcss\bundle\DoAnASP.styles.css
+F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\ListFlims.cshtml.g.cs
+F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
+F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Register.cshtml.g.cs
+F:\GITHUB\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs
