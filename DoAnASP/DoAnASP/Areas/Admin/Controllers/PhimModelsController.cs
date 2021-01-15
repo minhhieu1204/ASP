@@ -89,7 +89,9 @@ namespace DoAnASP.Areas.Admin.Controllers
                     page = 1;
                 }
             }
-            var data = (from db in _context.phimModels
+            var data = from s in _context.phimModels
+                       select s;
+          /*  var data = (from db in _context.phimModels
                        select new
                        {
                            db.IdPhim,
@@ -98,7 +100,7 @@ namespace DoAnASP.Areas.Admin.Controllers
                            db.HinhAnh,
                            db.LinkPhim,
                            db.loaiPhim.TenLoaiPhim
-                       }).Skip((page - 1) * 5).Take(5);
+                       })*//*.Skip((page - 1) * 5).Take(5)*//*;*/
             Count = page;
             return JsonConvert.SerializeObject(data);
         }

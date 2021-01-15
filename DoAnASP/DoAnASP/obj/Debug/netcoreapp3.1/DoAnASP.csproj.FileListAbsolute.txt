@@ -1566,3 +1566,4 @@ E:\HK5\Web ASP.Net\ASP\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.cspro
 E:\HK5\Web ASP.Net\ASP\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.dll
 E:\HK5\Web ASP.Net\ASP\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.pdb
 E:\HK5\Web ASP.Net\ASP\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\DoAnASP.genruntimeconfig.cache
+E:\HK5\Web ASP.Net\ASP\DoAnASP\DoAnASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Register.cshtml.g.cs
