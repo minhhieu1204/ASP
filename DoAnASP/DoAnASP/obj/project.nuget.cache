@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "khs3ihslJCNloO1sHE0P0HKelqyd04H5Inco8GYR6FCQ0LAFM/YX1NzXqneeQYTnTpnWbbT3XVPiPRP3ImpfIQ==",
+  "dgSpecHash": "EmRuwoTAurHSKmJRzMGTLDdN52oVZxkk+Mh77p8dB7l49TXkEuAVVCordozQ8AeCfyck18FVo1ytnB7Cdssv8w==",
   "success": true,
-  "projectFilePath": "E:\\HK5\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
+  "projectFilePath": "E:\\HK5\\Web ASP.Net\\ASP\\DoAnASP\\DoAnASP\\DoAnASP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
@@ -174,12 +174,5 @@
     "C:\\Users\\hi\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\hi\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file E:\\HK5\\ASP\\DoAnASP\\DoAnASP\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
