@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
@@ -19,10 +21,29 @@ namespace DoAnASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        private string username = null;
         // GET: Admin/QuanHuyenModels
         public async Task<IActionResult> Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    username = us.SelectToken("Username").ToString();
+                    ViewBag.Username = username;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Chưa Đăng nhập");
+            }
             var dPContext = _context.quanHuyenModels.Include(q => q.thanhPho);
             return View(await dPContext.ToListAsync());
         }
@@ -49,6 +70,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/QuanHuyenModels/Create
         public IActionResult Create()
         {
+            ViewBag.Username = username;
             ViewData["MaThanhPho"] = new SelectList(_context.thanhPhoModels, "IdThanhPho", "TenThanhPho");
             return View();
         }
@@ -83,6 +105,7 @@ namespace DoAnASP.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Username = username;
             ViewData["MaThanhPho"] = new SelectList(_context.thanhPhoModels, "IdThanhPho", "TenThanhPho", quanHuyenModel.MaThanhPho);
             return View(quanHuyenModel);
         }
@@ -126,6 +149,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/QuanHuyenModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();

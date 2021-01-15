@@ -1,0 +1,50 @@
+﻿@model DoAnASP.Areas.Admin.Models.UserModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<section class="main">
+    <div class="layer">
+        <div class="bottom-grid">
+            <div class="logo">
+                <h1> <a asp-action="Login"><span class="fa fa-key"></span> Key</a></h1>
+            </div>
+            <div class="links">
+                <ul class="links-unordered-list">
+                    <li class="active">
+                        <a href="#" class="">Login</a>
+                    </li>
+                    <li class="">
+                        <a asp-controller="Home"  asp-action="Register">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-w3ls">
+            <div class="text-center icon">
+                <span class="fa fa-html5"></span>
+            </div>
+            <div class="content-bottom">
+                <form asp-action="Login" method="post">
+                    <div class="field-group">
+                        <span class="fa fa-user" aria-hidden="true"></span>
+                        <div class="wthree-field">
+                            <input asp-for="Username" id="text1" type="text" value="" placeholder="Username" required>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <span class="fa fa-lock" aria-hidden="true"></span>
+                        <div class="wthree-field">
+                            <input asp-for="Password" id="myInput" type="Password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="wthree-field">
+                        <button type="submit" class="btn btn-primary">Get Started</button>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</section>
+

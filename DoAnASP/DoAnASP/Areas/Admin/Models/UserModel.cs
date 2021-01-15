@@ -11,38 +11,26 @@ namespace DoAnASP.Areas.Admin.Models
     {
         [Key]
         public int IdUser { get; set; }
-
-        [Required(ErrorMessage = "Username không hợp lệ")]
-        [StringLength(100, MinimumLength = 10)]
+        [StringLength(maximumLength: 25, MinimumLength = 10, ErrorMessage = "Value from 10 to 25 character!")]
+        [Required(ErrorMessage = "Please enter  value Username!")]
         public string Username { get; set; }
-
-        [Required(ErrorMessage = "password không hợp lệ")]
-        [StringLength(100)]
+        [StringLength(maximumLength: 100, MinimumLength = 6, ErrorMessage = "Value from 6 to 100 character!")]
+        [Required(ErrorMessage = "Please enter  value Password!")]
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "Họ tên không hợp lệ")]
-        [StringLength(100)]
+        [StringLength(maximumLength: 50, MinimumLength = 10, ErrorMessage = "Value from 10 to 50 character!")]
+        [Required(ErrorMessage = "Please enter  value Name!")]
         public string HoTen { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Please enter  value Date of birtday!")]
         public DateTime NgaySinh { get; set; }
-
-        [Required(ErrorMessage = "Chọn giới tính")]
-        [DefaultValue(true)]
         public bool GioiTinh { get; set; }
-
-        [Required(ErrorMessage = "Kiểm tra lại địa chỉ")]
-        [StringLength(255)]
+        [StringLength(maximumLength: 100, MinimumLength = 4, ErrorMessage = "Value from 4 to 100 character!")]
+        [Required(ErrorMessage = "Please enter  value Address!")]
         public string DiaChi { get; set; }
-
-
-        [StringLength(10)]
-        [RegularExpression(@"^[0]-[0-9]{9}$")]
-        [Required(ErrorMessage = "Số điện thoại không hợp lệ")]
+        [Phone(ErrorMessage = "Sai Format Phone Number!")]
+        [Required(ErrorMessage = "Please enter  value Phone!")]
+        [RegularExpression("0\\d{9}", ErrorMessage ="Số điện thoại phải bắt đầu từ 0 và chỉ 9 số")]
         public string SDT { get; set; }
 
-        [Required]
         [DefaultValue(true)]
         public bool LoaiTaiKhoan { get; set; }
     }

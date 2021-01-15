@@ -9,29 +9,103 @@ using DoAnASP.Areas.Admin.Data;
 using DoAnASP.Areas.Admin.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Newtonsoft.Json.Linq;
+using DoAnASP.Hubs;
+using Newtonsoft.Json;
 
 namespace DoAnASP.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class PhimModelsController : Controller
     {
+        private static int Count=0;
         private readonly DPContext _context;
 
         public PhimModelsController(DPContext context)
         {
             _context = context;
         }
-
+        public void updateMessage(string message)
+        {
+            NotificationHubs.messagesss = message;
+        }
+        private string username = null;
         // GET: Admin/PhimModels
         public async Task<IActionResult> Index()
         {
-            var dPContext = _context.phimModels.Include(p => p.loaiPhim);
-            return View(await dPContext.ToListAsync());
-        }
 
+            var pageCount = _context.phimModels;
+            ViewBag.PageCount = Math.Ceiling((decimal)pageCount.Count() / 5);
+           
+            var dPContext = _context.phimModels.Include(s => s.loaiPhim).Take(5);
+            try
+            {
+                if (HttpContext.Session.GetString("User").ToString() == null)
+                {
+                    HttpContext.Session.SetString("User", "Chưa đăng nhập");
+                }
+                else
+                {
+
+                    JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+                    if (bool.Parse(us.SelectToken("LoaiTaiKhoan").ToString()) == true)
+                    {
+                        username = us.SelectToken("Username").ToString();
+                        ViewBag.Username = username;
+                        return View(await dPContext.ToListAsync());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Chưa Đăng nhập");
+            }
+            var url = Url.RouteUrl(new { area = "", action = "Index", controller = "Home" });
+            return Redirect(url);
+        }
+      public string PhanPage(int page)
+        {
+            var pageCount = _context.phimModels;
+            ViewBag.PageCount = Math.Ceiling((decimal)pageCount.Count() / 5);
+            if (page == 100)
+            {
+                if (Count < ViewBag.PageCount)
+                {
+                    page = Count + 1;
+                }
+                else
+                {
+                    page = (int)ViewBag.PageCount;
+                }
+            }
+            if (page == 99)
+            {
+                if (Count >= 2)
+                {
+                    page = Count - 1;
+                }
+                else
+                {
+                    page = 1;
+                }
+            }
+            var data = (from db in _context.phimModels
+                       select new
+                       {
+                           db.IdPhim,
+                           db.TenPhim,
+                           db.ThoiLuong,
+                           db.HinhAnh,
+                           db.LinkPhim,
+                           db.loaiPhim.TenLoaiPhim
+                       }).Skip((page - 1) * 5).Take(5);
+            Count = page;
+            return JsonConvert.SerializeObject(data);
+        }
         // GET: Admin/PhimModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();
@@ -51,10 +125,10 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Create
         public IActionResult Create()
         {
+            ViewBag.Username = username;
             ViewBag.TypeFilm = _context.loaiPhimModels.ToList();
             return View();
         }
-
         // POST: Admin/PhimModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -66,15 +140,14 @@ namespace DoAnASP.Areas.Admin.Controllers
             {
                 _context.Add(phimModel);
                 await _context.SaveChangesAsync();
-                await _context.SaveChangesAsync();
                 var parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", phimModel.IdPhim + "." +
-             ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1]);
+                ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1]);
                 using (var stream = new FileStream(parth, FileMode.Create))
                 {
                     await ful.CopyToAsync(stream);
                 }
+
                 phimModel.HinhAnh = phimModel.IdPhim + "." + ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1];
-                _context.Update(phimModel);
                 _context.Update(phimModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,6 +159,8 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
+            ViewBag.Username = us.SelectToken("Username").ToString();
             if (id == null)
             {
                 return NotFound();
@@ -105,7 +180,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,Mota,MaLoaiPhim")] PhimModel phimModel)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPhim,TenPhim,ThoiLuong,HinhAnh,Mota,MaLoaiPhim")] PhimModel phimModel,IFormFile ful,string hinhanh)
         {
             if (id != phimModel.IdPhim)
             {
@@ -116,6 +191,22 @@ namespace DoAnASP.Areas.Admin.Controllers
             {
                 try
                 {
+                    var parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", hinhanh);
+                    System.IO.File.Delete(parth);
+                    if (ful == null)
+                    {
+                        phimModel.HinhAnh = hinhanh;
+                    }
+                    else
+                    {
+                        parth = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ImageAdmin/ImgPhim", phimModel.IdPhim + "." +
+                      ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1]);
+                        using (var stream = new FileStream(parth, FileMode.Create))
+                        {
+                            await ful.CopyToAsync(stream);
+                        }
+                        phimModel.HinhAnh = phimModel.IdPhim + "." + ful.FileName.Split(".")[ful.FileName.Split(".").Length - 1];
+                    }
                     _context.Update(phimModel);
                     await _context.SaveChangesAsync();
                 }
@@ -139,6 +230,7 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/PhimModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Username = username;
             if (id == null)
             {
                 return NotFound();

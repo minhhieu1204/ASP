@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DoAnASP.Areas.Admin.Models.PhimModel>
+﻿
+@model IEnumerable<DoAnASP.Areas.Admin.Models.PhimModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,29 +7,32 @@
 
 
 <div class="main-content">
-
     <div class="section__content section__content--p30">
 
         <div class="container-fluid">
-
             <div class="row">
-                <div class="form-header">
+                <div class="form-header col-sm-5">
                     <input class="au-input au-input--xl" type="text" name="keyword" id="keyword" placeholder="Search for datas &amp; reports..." />
                     <button class="au-btn--submit" id="btn_search">
                         <i class="zmdi zmdi-search"></i>
                     </button>
                 </div>
+                <div class="form-header col-sm-5">
+                    <h4 class="col-4">Thông Báo User:</h4><br />
+                    <input class="au-input au-input--xl" type="text" name="comment" id="comment" title="Thông báo cho người dùng" placeholder="Notifications User....." />
+                    <button class="au-btn--submit" id="clientbutton">
+                        <i class="zmdi zmdi-notifications-add"></i>
+                    </button>
+                </div>
+                <br />
                 <div class="col-md-12">
                     <div class="table-responsive table-responsive-data2">
                         <h1>Phim</h1>
-
+                        <br />
                         <p>
                             <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">Create New</a>
                         </p>
-                        <br /><br />
-                        <p>
-                            <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Index" asp-controller="PhimModels">Back</a>
-                        </p>
+                        <br />
                         <table class="table table-data2">
                             <thead>
                                 <tr>
@@ -36,7 +40,7 @@
                                     <th>Thời lượng</th>
                                     <th>Hình ảnh</th>
                                     <th>Loại phim</th>
-                                    <th></th>
+                                    <th>Link Phim</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,32 +54,62 @@
                                             @Html.DisplayFor(modelItem => item.ThoiLuong)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.HinhAnh)
+                                            <img src="~/ImageAdmin/ImgPhim/@Html.DisplayFor(modelItem => item.HinhAnh)" style="width:200px; height:100px;" />
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.loaiPhim.TenLoaiPhim)
                                         </td>
+                                        <td> @Html.DisplayFor(modelItem => item.LinkPhim)</td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a asp-action="Edit" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdPhim" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
                                 }
                             </tbody>
+
                         </table>
+                        <br />
+                        <br />
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link"  href="#" onclick="showPage(99)" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                @for (int i = 1; i <= ViewBag.PageCount; i++)
+                                {
+                                        <li class="page-item" onclick="showPage(@i)"><a class="page-link " href="#" >@i</a></li>
+                                }
+                                <li class="page-item">
+                                    <a class="page-link"  href="#" onclick="showPage(100)" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
+
 @section Scripts{
+    <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+   
     <script>
         $(document).ready(function () {
             $("#btn_search").click(function () {
@@ -85,43 +119,82 @@
                     data: { 'keyword': $("#keyword").val() }
                 }).done(function (data) {
                     var cc = JSON.parse(data);
-                     var i = '';
+                    var i = '';
                     $.each(cc, function (index, value) {
-                         i += ` <tr class="tr-shadow">
-                                        <td>`+
-                            value.TenPhim
-                            +
-                            `
-                                        </td>
-                                        <td>`+
-                            value.ThoiLuong
-                            + `
-                                        </td>
-                                        <td>`+
-                            value.HinhAnh
-                            + `
-                                        </td>
-                                        <td>
-                                          `+
-                            value.TenLoaiPhim
-                            + `
-                                        </td>
-                                        <td>
-                                            <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <i class="zmdi zmdi-delete"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>`;
+                        i += ` <tr class="tr-shadow"><td>`+value.TenPhim+
+                            `</td><td>`+value.ThoiLuong+ `</td><td><img src="/ImageAdmin/ImgPhim/`+ value.HinhAnh + `" style="width:100px; height:100px;" />
+                            </td><td>`+ value.TenLoaiPhim + ` </td>
+                             </td><td>`+ value.LinkPhim + ` </td>
+                             <td><div class="table-data-feature">
+                                <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>`;
                     });
                     $('tbody').html(i)
-            });
+                });
             });
         });
     </script>
 
+    <script>
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/Notifications").build();
+        connection.start().then(function () {
+
+        }).catch(function (err) {
+            return console.error.toString();
+        });
+        connection.on("ClientSideFunction", function (message) {
+            $('#ProductDescription').text(message);
+        });
+        $('#clientbutton').click(function (envent) {
+            let message = $('#comment').val();
+            $.ajax({
+                url: '../../Admin/PhimModels/updateMessage',
+                type: 'GET',
+                data: { 'message': message }
+            }).done(function () {
+                $('#comment').empty();
+                connection.invoke("NotificationClient").catch(function (err) {
+                    return console.error.toString();
+                });
+                envent.preventDefault();
+            });
+        });
+    </script>
+    <script>
+        function showPage(id) {
+            $.ajax({
+                type: "GET",
+                data: { 'page': id },
+                url: '../../Admin/PhimModels/PhanPage'
+            }).done(function (respone) {
+                var a = JSON.parse(respone);
+                var i = '';
+                $.each(a, function (index, value) {
+                    i += ` <tr class="tr-shadow"><td>` + value.TenPhim +
+                        `</td><td>` + value.ThoiLuong + `</td><td><img src="/ImageAdmin/ImgPhim/` + value.HinhAnh + `" style="width:100px; height:100px;" />
+                            </td><td>`+ value.TenLoaiPhim + ` </td>
+                             </td><td>`+ value.LinkPhim + ` </td>
+                             <td><div class="table-data-feature">
+                                <a href="PhimModels/Edit/`+ value.IdPhim + `" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </a>
+                                <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>`;
+                });
+                $('tbody').html(i)
+               });
+             }
+    </script>
 }
