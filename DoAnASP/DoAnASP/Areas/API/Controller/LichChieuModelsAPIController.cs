@@ -31,9 +31,11 @@ namespace DoAnASP.Areas.API.Controller
 
         // GET: api/LichChieuModelsAPI/5
         [HttpGet("Getphim")]
-        public string GetLichChieuModel(int id,int marap,int ngay)
+        public string GetLichChieuModel(int id,int marap,string ngay, string thang, string nam)
         {
-            string ngaysosanh = ngay.ToString();
+            var dss = _context.lichChieuModels.First();
+            string ng = dss.NgayChieu.ToString();
+            string ngaysosanh = nam+"-"+thang+"-"+ngay;
             var ds = from a in _context.lichChieuModels
                      where a.MaPhim == id && a.NgayChieu.ToString().Contains(ngaysosanh)
                      select a;
