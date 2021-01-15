@@ -102,9 +102,11 @@ namespace DoAnASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([Bind("IdUser,Username,Password,HoTen,NgaySinh,GioiTinh,DiaChi,SDT,LoaiTaiKhoan")] UserModel userModel)
         {
+
                 userModel.Password = StringProcess.CreateMD5Hash(userModel.Password).ToString();
                 _context.Add(userModel);
                 await _context.SaveChangesAsync();
+                
             if (userModel.Username == null)
             {
                 HttpContext.Session.SetString("Userthuong", "");

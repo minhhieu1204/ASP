@@ -117,11 +117,12 @@
                                                                 </td>
                                                                 <td>
                                                                     <div class="table-data-feature">
-                                                                        <button asp-action="Edit" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                            <i class="zmdi zmdi-edit"></i>
-                                                                        </button>
+                                                                      <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                            <a href="PhimModels/Edit/${value.IdPhim}"><i class="zmdi zmdi-edit"></i></a>
+                                                                     </button>
                                                                         <button asp-action="Delete" asp-route-id=`+ value.IdPhim + ` class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                                             <i class="zmdi zmdi-delete"></i>
+                                                                            <a href="PhimModels/Delete/${value.IdPhim}"> <i class="zmdi zmdi-delete"></i></a>
                                                                         </button>
                                                                     </div>
                                                                 </td>

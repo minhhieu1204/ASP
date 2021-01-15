@@ -34,7 +34,7 @@ namespace DoAnASP.Areas.Admin.Controllers
             var dPContext = _context.phimModels.Include(s => s.loaiPhim);
             try
             {
-                if (HttpContext.Session.GetString("User").ToString() == null)
+                if (HttpContext.Session.GetString("User").ToString() == null)   
                 {
                     HttpContext.Session.SetString("User", "Chưa đăng nhập");
                 }
