@@ -44,28 +44,26 @@ namespace DoAnASP.Areas.Admin.Controllers
 
                 throw new Exception("Chưa Đăng nhập");
             }
-            var dPContext = _context.datVeModels.Include(d => d.khachHang).Include(d => d.lichChieu);
+            var dPContext = _context.datVeModels.Include(d => d.khachHang).Include(d => d.lichChieu).Include(d=>d.lichChieu.giamGia);
             return View(await dPContext.ToListAsync());
         }
 
         // GET: Admin/DatVeModels/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var datVeModel = await _context.datVeModels
-                .Include(d => d.khachHang)
-                .Include(d => d.lichChieu)
-                .FirstOrDefaultAsync(m => m.IdDatVe == id);
-            if (datVeModel == null)
+            var chiTietDatVe = _context.chiTietDatVeModels.Where(m=>m.MaDatVe==id);
+            chiTietDatVe = chiTietDatVe.Include(x => x.datVe.khachHang).Include(x => x.datVe.lichChieu);
+            if (chiTietDatVe == null)
             {
                 return NotFound();
             }
 
-            return View(datVeModel);
+            return View(chiTietDatVe);
         }
 
         // GET: Admin/DatVeModels/Create

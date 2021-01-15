@@ -468,7 +468,7 @@
                         url: "../../api/SingleAPI/ThanhToan",
                         data: {
                             'dsGheChon': JSON.stringify(gheDangChon),
-                            'tongGia': tongGia,
+                            'tongGia': (tongGia * (100 - giamGia) / 100),
                             'idLichChieu': idLichChieu
                         }
                     }).done(function (data) {

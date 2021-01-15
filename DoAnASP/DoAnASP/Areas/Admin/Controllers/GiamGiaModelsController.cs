@@ -68,8 +68,10 @@ namespace DoAnASP.Areas.Admin.Controllers
         // GET: Admin/GiamGiaModels/Create
         public IActionResult Create()
         {
-            return View();
+            return PartialView();
         }
+
+        
 
         // POST: Admin/GiamGiaModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -100,7 +102,7 @@ namespace DoAnASP.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(giamGiaModel);
+            return PartialView(giamGiaModel);
         }
 
         // POST: Admin/GiamGiaModels/Edit/5

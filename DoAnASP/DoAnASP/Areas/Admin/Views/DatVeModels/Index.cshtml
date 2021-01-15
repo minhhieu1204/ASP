@@ -33,37 +33,43 @@
                 <th>
                     @Html.DisplayNameFor(model => model.khachHang)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lichChieu.giamGia.PhanTram)
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SoGhe)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NgayDat)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TongGia)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TrangThaiThanhToan)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.lichChieu.IdLichChieu)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.khachHang.DiaChi)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.IdDatVe">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.IdDatVe">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.IdDatVe">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoGhe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TongGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThaiThanhToan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lichChieu.NgayChieu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.khachHang.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lichChieu.giamGia.PhanTram)
+                </td=>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdDatVe">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdDatVe">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdDatVe">Delete</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

@@ -4,17 +4,24 @@
     ViewData["Title"] = "Index";
 }
 
+
+
+<div class="container">
+    <div class="modal fade col-4" id="modalCreate" role="dialog" data-url='@Url.Action("Create","GiamGiaModels")'></div>
+    
+   
+</div>
+  
+
 <div class="main-content">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                 <div class="col-md-12">
                     <div class="table-responsive table-responsive-data2">
                         <h1>Giảm giá</h1>
+                        <button type="button" class="btn btn-create btn-info btn-lg">Create</button>
 
-                        <p>
-                            <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">Create New</a>
-                        </p>
                         <table class="table table-data2">
                             <thead>
                                 <tr>
@@ -33,7 +40,8 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button asp-action="Edit" asp-route-id="@item.IdMaGiamGia" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <button asp-action="Edit" asp-route-id="@item.IdMaGiamGia"  class="item " data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    
                                                     <i class="zmdi zmdi-edit"></i>
                                                 </button>
                                                 <button asp-action="Delete" asp-route-id="@item.IdMaGiamGia" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
@@ -51,3 +59,32 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    var id = 0;
+        $(document).ready(function () {
+
+            $('.btn-create').click(function () {
+
+                var url = $('#modalCreate').data('url');
+                $.get(url, function (data) {
+
+                    $('#modalCreate').html(data);
+                    $('#modalCreate').modal('show');
+                });
+            });
+
+
+        });
+
+   
+        
+    }
+
+        
+
+</script>
+}
