@@ -2,12 +2,9 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = null;
 }
-
-<h1>Create</h1>
-
-<h4>LoaiGheModel</h4>
-<hr />
+@using (Html.BeginForm("Create", "LoaiGheModels", FormMethod.Post, new { enctype = "multipart/form-data" })) ;
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -28,9 +25,6 @@
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
