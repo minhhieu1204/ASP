@@ -76,7 +76,7 @@ namespace DoAnASP.Areas.API.Controller
                         c += item + ",";
                 }
                 string[] d = c.Split(",");
-                JObject us = JObject.Parse(HttpContext.Session.GetString("UserThuong"));
+                JObject us = JObject.Parse(HttpContext.Session.GetString("User"));
                 if (d.Length > 0)
                 {
                     DatVeModel datVeModel = new DatVeModel();

@@ -55,8 +55,8 @@ namespace DoAnASP.Controllers
             }
 
             ViewBag.Loginsai = "Bạn nhập sai tài khoản mời nhập lại";
-            var dpContext = _context.phimModels.Include(a=>a.loaiPhim);
-            return View(await dpContext.ToListAsync());
+            var dPContext = _context.phimModels.Include(p => p.loaiPhim);
+            return View(await dPContext.ToListAsync());
         }
         public IActionResult Login()
         {
@@ -65,11 +65,6 @@ namespace DoAnASP.Controllers
         public IActionResult Register()
         {
             return View();
-        }
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Remove("User");
-            return Redirect("Login");
         }
         public async  Task<IActionResult> ListFlims()
         {
@@ -86,14 +81,7 @@ namespace DoAnASP.Controllers
               return  RedirectToAction("Login", "Home");
             }
             var str = JsonConvert.SerializeObject(r);
-            if (userModel.Username == null) {
-                HttpContext.Session.SetString("Userthuong","");
-            }
-            else
-            {
-                HttpContext.Session.SetString("Userthuong", userModel.Username);
-            }
-
+           
             i++;
             if (r.LoaiTaiKhoan == true)
             {
