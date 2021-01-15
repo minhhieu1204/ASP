@@ -13,7 +13,7 @@
                         <h1>Phòng</h1>
 
                         <p>
-                            <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">Create New</a>
+                            <a onclick="showModal('@Url.Action("Create","PhongModels",null,Context.Request.Scheme)','Thêm phòng')" class="au-btn au-btn-icon au-btn--green au-btn--small" >Create New</a>
                         </p>
                         <table class="table table-data2">
                             <thead>
@@ -39,10 +39,10 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <a asp-action="Edit" asp-route-id="@item.IdPhong" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a onclick="showModal('@Url.Action("Edit","PhongModels",new { id = $"{item.IdPhong}" },Context.Request.Scheme)','Cập nhật')" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
                                                 </a>
-                                                <a asp-action="Delete" asp-route-id="@item.IdPhong" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <a onclick="showModal('@Url.Action("Delete","PhongModels",new { id = $"{item.IdPhong}" },Context.Request.Scheme)','Xóa phòng')" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </a>
                                             </div>
@@ -57,11 +57,11 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+<!--<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">-->
 
         <!-- Modal content-->
-        <div class="modal-content">
+        <!--<div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Thông báo</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -76,11 +76,11 @@
         </div>
 
     </div>
-</div>
-@section Scripts{ 
+</div>-->
+@*@section Scripts{ 
     <script>
         $(document).ready(function () {
             $('#myModal').modal('show');
         });
     </script>
-} 
+}*@ 

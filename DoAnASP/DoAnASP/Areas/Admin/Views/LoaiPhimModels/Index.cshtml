@@ -74,12 +74,12 @@
                             `</td>
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <button asp-action="Edit" asp-route-id="`+ value.IdLoaiPhim + `" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <a href="LoaiPhimModels/Edit/`+ value.IdLoaiPhim + ` " class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <button asp-action="Delete" asp-route-id="`+ value.IdLoaiPhim + `" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    </a>
+                                                    <a href="LoaiPhimModels/Delete/`+ value.IdLoaiPhim + ` " class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                 <i class="zmdi zmdi-delete"></i>
-                                                    </button >
+                                                    </a>
                                                     </div >
                                                 </td >
                                             </tr >`;

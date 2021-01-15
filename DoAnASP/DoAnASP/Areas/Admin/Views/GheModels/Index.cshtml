@@ -13,7 +13,7 @@
                         <h1>Ghế</h1>
 
                         <p>
-                            <a class="au-btn au-btn-icon au-btn--green au-btn--small" asp-action="Create">Create New</a>
+                            <a class="au-btn au-btn-icon au-btn--green au-btn--small" onclick="showModal('@Url.Action("Create","GheModels",null,Context.Request.Scheme)', 'Thêm ghế')">Create New</a>
                         </p>
                         <table class="table table-data2">
                             <thead>
@@ -51,10 +51,10 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <a asp-action="Edit" asp-route-id="@item.IdGhe" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a onclick="showModal('@Url.Action("Edit","GheModels",new { id = $"{item.IdGhe}" },Context.Request.Scheme)','Cập nhật')" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
                                                 </a>
-                                                <a asp-action="Delete" asp-route-id="@item.IdGhe" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <a onclick="showModal('@Url.Action("Delete","GheModels",new { id = $"{item.IdGhe}" },Context.Request.Scheme)','Xóa ghế')" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </a>
                                             </div>

@@ -31,10 +31,13 @@ namespace DoAnASP.Areas.API.Controller
         [HttpGet("GetData")]
         public string Get(string keyword)
         {
-            var typeFilm = from s in _context.loaiPhimModels
-                           where s.TenLoaiPhim.Contains(keyword)
-                           select s;
-            return JsonConvert.SerializeObject(typeFilm);
+                var typeFilm = from s in _context.loaiPhimModels
+                               where s.TenLoaiPhim.Contains(keyword)
+                               select new {
+                                   s.IdLoaiPhim,
+                                   s.TenLoaiPhim
+                               };
+                return JsonConvert.SerializeObject(typeFilm);
         }
 
         // POST api/<APISearchLoaiPhimController>
