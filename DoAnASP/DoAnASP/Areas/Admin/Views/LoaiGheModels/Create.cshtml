@@ -7,7 +7,7 @@
 @using (Html.BeginForm("Create", "LoaiGheModels", FormMethod.Post, new { enctype = "multipart/form-data" })) ;
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" id="frm_create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TenLoaiGhe" class="control-label"></label>
@@ -20,7 +20,7 @@
                 <span asp-validation-for="GiaLoaiGhe" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" id="btn_create" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -30,3 +30,29 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+    $('#btn_create').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            method: "POST",
+            url: "@Url.Action("Create")",
+            data: $('#frm_create').serialize()
+        }).done(function (response) {
+            console.log(response);
+            if (response) {
+                $('#form-modal .modal-body').html("Thêm thành công");
+                //hiện tiêu đề
+                $('#form-modal .modal-title').html("Thông báo");
+                //hiện modal
+                $('#form-modal').modal('show');
+            }
+            else {
+                $('#form-modal .modal-body').html("Thêm Thất bại");
+                //hiện tiêu đề
+                $('#form-modal .modal-title').html("Thông báo");
+                //hiện modal
+                $('#form-modal').modal('show');
+            }
+        })
+    })
+</script>

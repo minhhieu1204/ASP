@@ -35,8 +35,34 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete">
+    <form asp-action="Delete" id="frm_delete">
         <input type="hidden" asp-for="IdGhe" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" id="btn_delete" value="Delete" class="btn btn-danger" /> |
     </form>
 </div>
+<script>
+    $('#btn_delete').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            method: "POST",
+            url: "@Url.Action("Delete")",
+            data: $('#frm_delete').serialize()
+        }).done(function (response) {
+            console.log(response);
+            if (response) {
+                $('#form-modal .modal-body').html("Xóa thành công");
+                //hiện tiêu đề
+                $('#form-modal .modal-title').html("Thông báo");
+                //hiện modal
+                $('#form-modal').modal('show');
+            }
+            else {
+                $('#form-modal .modal-body').html("Xóa thất bại");
+                //hiện tiêu đề
+                $('#form-modal .modal-title').html("Thông báo");
+                //hiện modal
+                $('#form-modal').modal('show');
+            }
+        })
+    })
+</script>

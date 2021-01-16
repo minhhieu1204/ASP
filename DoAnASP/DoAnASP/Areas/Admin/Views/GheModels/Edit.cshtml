@@ -39,3 +39,31 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+    $('#btn_edit').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            method: "POST",
+            url: "@Url.Action("Edit")",
+            data: $('#frm_edit').serialize()
+        }).done(function (response) {
+            console.log(response);
+            if (response) {
+                //alert("Sửa thanh công");
+                //location.reload();
+                $('#form-modal .modal-body').html("Sửa thành công");
+                //hiện tiêu đề
+                $('#form-modal .modal-title').html("Thông báo");
+                //hiện modal
+                $('#form-modal').modal('show');
+            }
+            else {
+                $('#form-modal .modal-body').html("Sửa Thất bại");
+                //hiện tiêu đề
+                $('#form-modal .modal-title').html("Thông báo");
+                //hiện modal
+                $('#form-modal').modal('show');
+            }
+        })
+    })
+</script>

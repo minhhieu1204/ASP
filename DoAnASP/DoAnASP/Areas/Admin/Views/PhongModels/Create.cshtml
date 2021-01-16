@@ -10,7 +10,7 @@
     <h4>PhongModel</h4>*@
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" id="frm_create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TenPhong" class="control-label"></label>
@@ -22,7 +22,7 @@
                 <select asp-for="MaRap" class="form-control" asp-items="ViewBag.MaRap"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" id="btn_create" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -31,3 +31,29 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+        $('#btn_create').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                method: "POST",
+                url: "@Url.Action("Create")",
+                data: $('#frm_create').serialize()
+            }).done(function (response) {
+                console.log(response);
+                if (response) {
+                    $('#form-modal .modal-body').html("Thêm thành công");
+                    //hiện tiêu đề
+                    $('#form-modal .modal-title').html("Thông báo");
+                    //hiện modal
+                    $('#form-modal').modal('show');
+                }
+                else {
+                    $('#form-modal .modal-body').html("Thêm Thất bại");
+                    //hiện tiêu đề
+                    $('#form-modal .modal-title').html("Thông báo");
+                    //hiện modal
+                    $('#form-modal').modal('show');
+                }
+            })
+        })
+</script>
