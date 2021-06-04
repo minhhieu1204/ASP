@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\DoAnASP",
+    "\\DoAnASP\\DoAnASP",
+    "\\DoAnASP\\DoAnASP\\Areas",
+    "\\DoAnASP\\DoAnASP\\Areas\\Admin",
+    "\\DoAnASP\\DoAnASP\\Areas\\Admin\\Views",
+    "\\DoAnASP\\DoAnASP\\Areas\\Admin\\Views\\LoaiGheModels",
+    "\\DoAnASP\\DoAnASP\\Areas\\Admin\\Views\\PhimModels",
+    "\\DoAnASP\\DoAnASP\\Areas\\Admin\\Views\\RapModels",
+    "\\DoAnASP\\DoAnASP\\Areas\\Admin\\Views\\Shared"
+  ],
+  "SelectedNode": "\\DoAnASP\\DoAnASP\\Areas\\Admin\\Views\\LoaiGheModels\\Create.cshtml",
+  "PreviewInSolutionExplorer": false
+}
